@@ -8,22 +8,26 @@ const app = express();
 
 require("dotenv").config();
 
-const PORT = process.env.PORT || 3000;
+const { admin } = require("./routes");
 
+const PORT = process.env.PORT || 3000;
 mongoose
-  .connect(process.env.MONGOURL, {
+  .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
     useCreateIndex: true,
   })
   .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.log(`Error : ${err}`));
+  .catch((err) => {
+    console.log(`Error : ${err}`);
+    process.exit(22);
+  });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use("/admin");
+app.use("/admin", admin);
 // app.use("/siswa");
 
 const server = http.createServer(app);
