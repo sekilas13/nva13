@@ -1,6 +1,9 @@
-import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Card, Control, Label } from "../style/Login";
 
 function Login() {
+  document.querySelector("body").style.backgroundColor = "#0062cc";
+
   return (
     <Container>
       <Row className="justify-content-center mt-4">
@@ -9,15 +12,12 @@ function Login() {
             <Card.Body>
               <Form>
                 <Form.Group>
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" placeholder="Masukan email" />
+                  <Label>Email</Label>
+                  <Control type="email" placeholder="Masukan email" />
                 </Form.Group>
                 <Form.Group>
-                  <Form.Label>Kata Sandi</Form.Label>
-                  <Form.Control
-                    type="password"
-                    placeholder="Masukan kata sandi"
-                  />
+                  <Label>Kata Sandi</Label>
+                  <Control type="password" placeholder="Masukan kata sandi" />
                 </Form.Group>
                 <hr />
                 <Button variant="primary" className="btn-block" type="submit">
