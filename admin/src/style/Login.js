@@ -12,10 +12,17 @@ const Label = styled(lbl)`
 `;
 
 const Control = styled(ctrl)`
-  border-color: rgba(126, 239, 104, 0.8);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset,
-    0 0 8px rgba(51, 53, 51, 0.6);
-  outline: 0 none;
+  color: #eaeaea;
+  background-color: #333533;
+  border-color: rgba(73, 80, 87, 0.4);
+  &:focus {
+    color: white;
+    background-color: #333533;
+    border-color: rgba(73, 80, 87, 1);
+    box-shadow: 10px 5px 15px rgba(0, 0, 0, 0.075) inset,
+      0px 0px 0px rgba(73, 80, 87, 0.6);
+    outline: 0 none;
+  }
 `;
 
 const Error = ({ msg }) => <small className="text-danger">{msg}</small>;
