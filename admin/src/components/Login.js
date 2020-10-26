@@ -1,14 +1,17 @@
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import withReactContent from "sweetalert2-react-content";
 import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import { Card, Control, Label, Hr, Error, Spinner } from "../style/Login";
+import { Context } from "../utils/stateProvider";
 import { useForm } from "react-hook-form";
 
 const MySwal = withReactContent(Swal);
 
 function Login() {
+  const store = useContext(Context);
+
   const [state, UNSAFE_setState] = useState({ message: "", error: false });
   const setState = (data) => UNSAFE_setState({ ...state, ...data });
 
@@ -37,10 +40,14 @@ function Login() {
 
     axios
       .post("/admin/login", data)
-      .then((u) => console.log(u))
+      .then(({ data }) => {
+        store.setUID(data.user.id);
+        store.setUsername(data.user.username);
+        Loading.close();
+        store.setLogin(true);
+      })
       .catch((err) => {
         const e = err.response.data.errors;
-        console.log(e);
 
         setState({ message: e.message, error: true });
         Loading.close();
