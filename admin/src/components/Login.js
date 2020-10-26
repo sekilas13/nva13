@@ -1,5 +1,5 @@
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { Card, Control, Label } from "../style/Login";
+import { Card, Control, Label, Hr } from "../style/Login";
 
 function Login() {
   document.querySelector("body").style.backgroundColor = "#0062cc";
@@ -19,7 +19,7 @@ function Login() {
                   <Label>Kata Sandi</Label>
                   <Control type="password" placeholder="Masukan kata sandi" />
                 </Form.Group>
-                <hr />
+                <Hr />
                 <Button variant="primary" className="btn-block" type="submit">
                   Login
                 </Button>

@@ -25,6 +25,17 @@ const Control = styled(ctrl)`
   }
 `;
 
+const Hr = styled.hr`
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(255, 255, 255, 0.75),
+    rgba(0, 0, 0, 0)
+  );
+`;
+
 const Error = ({ msg }) => <small className="text-danger">{msg}</small>;
 
-export { Card, Label, Error, Control };
+export { Card, Label, Error, Control, Hr };
