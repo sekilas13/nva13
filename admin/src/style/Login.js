@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Form, Card as card } from "react-bootstrap";
+import { Form, Card as card, Spinner as spinner } from "react-bootstrap";
 
 const { Control: ctrl, Label: lbl } = Form;
 
@@ -36,6 +36,11 @@ const Hr = styled.hr`
   );
 `;
 
+const Spinner = styled(spinner)`
+  width: 60px;
+  height: 60px;
+`;
+
 const Error = ({ msg }) => <small className="text-danger">{msg}</small>;
 
-export { Card, Label, Error, Control, Hr };
+export { Card, Label, Error, Control, Hr, Spinner };
