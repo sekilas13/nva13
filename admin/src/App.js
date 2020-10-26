@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import { Context } from "./utils/stateProvider";
+import { observer } from "mobx-react";
+import { Login, Dashboard } from "./components";
 
 function App() {
   const store = useContext(Context);
 
-  return <></>;
+  return store.isLogin ? <Dashboard /> : <Login />;
 }
 
-export default App;
+export default observer(App);
