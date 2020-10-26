@@ -1,26 +1,64 @@
+import axios from "axios";
 import Swal from "sweetalert2";
+import { useState } from "react";
 import withReactContent from "sweetalert2-react-content";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import { Card, Control, Label, Hr, Error, Spinner } from "../style/Login";
 import { useForm } from "react-hook-form";
 
 const MySwal = withReactContent(Swal);
 
 function Login() {
+  const [state, UNSAFE_setState] = useState({
+    message: "",
+    variant: "",
+    error: false,
+  });
+  const setState = (data) => UNSAFE_setState({ ...data, ...state });
+
   document.querySelector("body").style.backgroundColor = "#0062cc";
 
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors, setValue } = useForm();
 
   const onSubmit = (data) => {
     const Loading = MySwal.fire({
-      title: <h2>Loading</h2>,
-      html: <Spinner animation="border" variant="primary" />,
+      title: (
+        <div>
+          <h2>Loading</h2>
+        </div>
+      ),
+      html: (
+        <div>
+          <Spinner animation="border" variant="primary" />
+        </div>
+      ),
       allowEscapeKey: false,
       showConfirmButton: false,
       allowOutsideClick: false,
       allowEnterKey: false,
       width: "15rem",
     });
+
+    axios
+      .post("/admin/login", data)
+      .then((u) => console.log(u))
+      .catch((err) => {
+        const {
+          errors: { message, type },
+        } = err.response.data;
+
+        switch (type) {
+          case "PASS_ERR":
+            setValue("password", "");
+            break;
+          case "ACC_404":
+            setValue("email", "");
+            setValue("password", "");
+            break;
+          default:
+            return null;
+        }
+      });
   };
 
   return (
