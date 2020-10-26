@@ -9,12 +9,8 @@ import { useForm } from "react-hook-form";
 const MySwal = withReactContent(Swal);
 
 function Login() {
-  const [state, UNSAFE_setState] = useState({
-    message: "",
-    variant: "",
-    error: false,
-  });
-  const setState = (data) => UNSAFE_setState({ ...data, ...state });
+  const [state, UNSAFE_setState] = useState({ message: "", error: false });
+  const setState = (data) => UNSAFE_setState({ ...state, ...data });
 
   document.querySelector("body").style.backgroundColor = "#0062cc";
 
@@ -43,11 +39,13 @@ function Login() {
       .post("/admin/login", data)
       .then((u) => console.log(u))
       .catch((err) => {
-        const {
-          errors: { message, type },
-        } = err.response.data;
+        const e = err.response.data.errors;
+        console.log(e);
 
-        switch (type) {
+        setState({ message: e.message, error: true });
+        Loading.close();
+
+        switch (e.type) {
           case "PASS_ERR":
             setValue("password", "");
             break;
@@ -67,6 +65,15 @@ function Login() {
         <Col md={5}>
           <Card>
             <Card.Body>
+              {state.error && (
+                <Alert
+                  variant="danger"
+                  onClose={() => setState({ error: false })}
+                  dismissible
+                >
+                  {state.message}
+                </Alert>
+              )}
               <Form onSubmit={handleSubmit(onSubmit)}>
                 <Form.Group>
                   <Label>Email</Label>
