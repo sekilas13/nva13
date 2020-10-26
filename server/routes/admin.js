@@ -7,7 +7,7 @@ const mongoStore = require("connect-mongodb-session")(session);
 require("dotenv").config();
 const store = new mongoStore({
   uri: process.env.MONGO_URL,
-  collection: "sess",
+  collection: "sess_admin",
 });
 
 const component = path.resolve("components/admin");
@@ -45,12 +45,10 @@ Router.post("/login", (req, res, next) => {
       if (err) {
         return res.status(400).json({ errors: err });
       }
-      return res
-        .status(200)
-        .json({
-          success: true,
-          user: { id: user.id, username: user.username },
-        });
+      return res.status(200).json({
+        success: true,
+        user: { id: user.id, username: user.username },
+      });
     });
   })(req, res, next);
 });
