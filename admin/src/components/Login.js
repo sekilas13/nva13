@@ -47,21 +47,34 @@ function Login() {
         store.setLogin(true);
       })
       .catch((err) => {
-        const e = err.response.data.errors;
+        const res = err.response;
 
-        setState({ message: e.message, error: true });
-        Loading.close();
+        if (res.status === 500) {
+          setState({
+            message:
+              "Server sedang mengalami masalah, tunggu beberapa saat lagi.",
+            error: true,
+          });
+          setValue("email", "");
+          setValue("password", "");
+          Loading.close();
+        } else if (res.status === 400) {
+          const e = res.data.errors;
 
-        switch (e.type) {
-          case "PASS_ERR":
-            setValue("password", "");
-            break;
-          case "ACC_404":
-            setValue("email", "");
-            setValue("password", "");
-            break;
-          default:
-            return null;
+          setState({ message: e.message, error: true });
+          Loading.close();
+
+          switch (e.type) {
+            case "PASS_ERR":
+              setValue("password", "");
+              break;
+            case "ACC_404":
+              setValue("email", "");
+              setValue("password", "");
+              break;
+            default:
+              return null;
+          }
         }
       });
   };
