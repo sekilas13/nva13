@@ -12,15 +12,21 @@ const store = new mongoStore({
 
 const component = path.resolve("components/admin");
 const production = process.env.NODE_ENV === "production";
+const expired = 30 * 60 * 1000;
 
 const Router = express.Router();
 
 Router.use(
   session({
+    name: "se_si_addm",
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     store,
+    cookie: {
+      maxAge: expired,
+      expires: new Date(Date.now() + expired),
+    },
   })
 );
 
@@ -47,7 +53,7 @@ Router.post("/login", (req, res, next) => {
       }
       return res.status(200).json({
         success: true,
-        user: { id: user.id, username: user.username },
+        user: { id: user.id, username: user.username, sessID: req.sessionID },
       });
     });
   })(req, res, next);
