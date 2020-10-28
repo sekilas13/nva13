@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
+import { Navi } from "../style/Dashboard";
 import { useEffect } from "react";
 
 function Dashboard() {
@@ -9,7 +10,7 @@ function Dashboard() {
 
   return (
     <Fragment>
-      <Navbar bg="dark" variant="dark">
+      <Navi variant="dark">
         <Container>
           <Navbar.Brand href="#home">Navbar</Navbar.Brand>
           <Nav className="my-auto">
@@ -18,7 +19,7 @@ function Dashboard() {
             <Nav.Link href="#pricing">Pricing</Nav.Link>
           </Nav>
         </Container>
-      </Navbar>
+      </Navi>
       <Container></Container>
     </Fragment>
   );
