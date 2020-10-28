@@ -3,8 +3,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const socketIO = require("socket.io");
 const bodyParser = require("body-parser");
-const cookie = require("cookie");
-const { admin: adminStore } = require("./store");
+// const cookie = require("cookie");
+// const { admin: adminStore } = require("./store");
 
 const app = express();
 
@@ -52,10 +52,7 @@ const Sock = socketIO(server);
 
 Sock.on("connection", (s) => {
   s.on("new user", (d) => {
-    const c = cookie.parse(s.handshake.headers.cookie);
-    adminStore.get(c.session_admiin, (err, data) => {
-      if (!data) s.disconnect();
-      s.broadcast.emit("admin:new user", d);
-    });
+    // const c = cookie.parse(s.handshake.headers.cookie);
+    s.broadcast.emit("admin:new user", d);
   });
 });
