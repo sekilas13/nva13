@@ -1,6 +1,7 @@
 const path = require("path");
 const express = require("express");
 const session = require("express-session");
+const { userAdmin } = require("../models");
 const { admin: passport } = require("../passport");
 const mongoStore = require("connect-mongodb-session")(session);
 
@@ -64,6 +65,21 @@ Router.post("/login", (req, res, next) => {
       });
     });
   })(req, res, next);
+});
+
+Router.post("/session", (req, res) => {
+  if (req.session) {
+    const { passport } = req.session;
+    userAdmin
+      .findOne({ _id: passport.user })
+      .then((u) => res.status(200).json({ _id: u._id, username: u.username }))
+      .catch((e) => {
+        console.log(e);
+        res.end();
+      });
+  } else {
+    res.status(401).json({ message: "HTTP 401 Unauthorized" });
+  }
 });
 
 module.exports = Router;
