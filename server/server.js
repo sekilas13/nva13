@@ -10,6 +10,9 @@ const app = express();
 
 require("dotenv").config();
 
+const component = path.resolve("components/client");
+const production = process.env.NODE_ENV === "production";
+
 const { admin } = require("./routes");
 
 const PORT = process.env.PORT || 3000;
@@ -28,6 +31,12 @@ mongoose
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.get("*", (req, res) =>
+  !production
+    ? res.redirect("http://localhost:4000")
+    : res.sendFile(path.join(component, "index.html"))
+);
 
 app.use("/admin", admin);
 // app.use("/siswa");

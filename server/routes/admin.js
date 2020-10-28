@@ -5,8 +5,6 @@ const { userAdmin } = require("../models");
 const { admin: passport } = require("../passport");
 const { admin: store } = require("../store");
 
-const component = path.resolve("components/admin");
-const production = process.env.NODE_ENV === "production";
 const expired = 30 * 60 * 1000;
 
 const Router = express.Router();
@@ -27,12 +25,6 @@ Router.use(
 
 Router.use(passport.initialize());
 Router.use(passport.session());
-
-Router.get("*", (req, res) =>
-  !production
-    ? res.redirect("http://localhost:4000")
-    : res.sendFile(path.join(component, "index.html"))
-);
 
 Router.post("/login", (req, res, next) => {
   passport.authenticate("local", function (err, user, info) {
