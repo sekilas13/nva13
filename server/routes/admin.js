@@ -53,7 +53,14 @@ Router.post("/login", (req, res, next) => {
       }
       return res.status(200).json({
         success: true,
-        user: { id: user.id, username: user.username, sessID: req.sessionID },
+        user: {
+          id: user.id,
+          username: user.username,
+          sessID: {
+            value: req.sessionID,
+            expires: expired,
+          },
+        },
       });
     });
   })(req, res, next);
