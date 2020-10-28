@@ -38,3 +38,7 @@ server.listen(PORT, () =>
 );
 
 const Sock = socketIO(server);
+
+Sock.on("connection", (s) => {
+  s.on("new user", (d) => s.broadcast.emit("admin:new user", d));
+});

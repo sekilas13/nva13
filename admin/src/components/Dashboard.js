@@ -1,12 +1,23 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useContext } from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import { Navi } from "../style/Dashboard";
-import { useEffect } from "react";
+import io from "socket.io-client";
+import { Context } from "../utils/stateProvider";
 
 function Dashboard() {
+  const store = useContext(Context);
+  const socket = io();
+
+  const newConnection = () => {
+    socket.emit("new user", { role: "admin", id: store.userId });
+  };
+
   useEffect(() => {
     document.querySelector("body").style.backgroundColor = "white";
+    newConnection();
   });
+
+  socket.on("admin:new user", (d) => console.log(d));
 
   return (
     <Fragment>
