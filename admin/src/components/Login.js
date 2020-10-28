@@ -6,6 +6,7 @@ import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import { Card, Control, Label, Hr, Error, Spinner } from "../style/Login";
 import { Context } from "../utils/stateProvider";
 import { useForm } from "react-hook-form";
+import Cookie from "js-cookie";
 
 const MySwal = withReactContent(Swal);
 
@@ -46,6 +47,9 @@ function Login() {
         store.setUID(data.user.id);
         store.setUsername(data.user.username);
         Loading.close();
+        Cookie.set("session_admiin", data.user.sessID.value, {
+          expires: new Date(new Date().getTime() + data.user.sessID.expires),
+        });
         store.setLogin(true);
       })
       .catch((err) => {
