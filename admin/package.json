@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
+    "js-cookie": "^2.2.1",
     "mobx": "^6.0.1",
     "mobx-react": "^7.0.0",
     "react": "^17.0.1",
