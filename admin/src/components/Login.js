@@ -1,6 +1,6 @@
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import withReactContent from "sweetalert2-react-content";
 import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import { Card, Control, Label, Hr, Error, Spinner } from "../style/Login";
@@ -15,7 +15,9 @@ function Login() {
   const [state, UNSAFE_setState] = useState({ message: "", error: false });
   const setState = (data) => UNSAFE_setState({ ...state, ...data });
 
-  document.querySelector("body").style.backgroundColor = "#0062cc";
+  useEffect(() => {
+    document.querySelector("body").style.backgroundColor = "#0062cc";
+  });
 
   const { register, handleSubmit, errors, setValue } = useForm();
 
