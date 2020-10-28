@@ -3,13 +3,7 @@ const express = require("express");
 const session = require("express-session");
 const { userAdmin } = require("../models");
 const { admin: passport } = require("../passport");
-const mongoStore = require("connect-mongodb-session")(session);
-
-require("dotenv").config();
-const store = new mongoStore({
-  uri: process.env.MONGO_URL,
-  collection: "sess_admin",
-});
+const { admin: store } = require("../store");
 
 const component = path.resolve("components/admin");
 const production = process.env.NODE_ENV === "production";
