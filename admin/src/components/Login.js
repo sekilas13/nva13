@@ -11,13 +11,16 @@ import Cookie from "js-cookie";
 const MySwal = withReactContent(Swal);
 
 function Login() {
+  document.querySelector("body").style.backgroundColor = "#0062cc";
+
   const store = useContext(Context);
 
   const [state, UNSAFE_setState] = useState({ message: "", error: false });
   const setState = (data) => UNSAFE_setState({ ...state, ...data });
 
   useEffect(() => {
-    document.querySelector("body").style.backgroundColor = "#0062cc";
+    const session = Cookie.get("session_admiin");
+    if (session) store.setLogin(true);
   });
 
   const { register, handleSubmit, errors, setValue } = useForm();
@@ -46,10 +49,11 @@ function Login() {
       .then(({ data }) => {
         store.setUID(data.user.id);
         store.setUsername(data.user.username);
-        Loading.close();
+        store.setNewLogin(true);
         Cookie.set("session_admiin", data.user.sessID.value, {
           expires: new Date(new Date().getTime() + data.user.sessID.expires),
         });
+        Loading.close();
         store.setLogin(true);
       })
       .catch((err) => {
