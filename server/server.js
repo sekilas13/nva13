@@ -1,12 +1,13 @@
 const http = require("http");
 const path = require("path");
+const noCache = require("nocache");
 const express = require("express");
 const mongoose = require("mongoose");
 const socketIO = require("socket.io");
 const bodyParser = require("body-parser");
-const noCache = require("nocache");
+const session = require("express-session");
+const mongoStore = require("connect-mongodb-session")(session);
 // const cookie = require("cookie");
-// const { admin: adminStore } = require("./store");
 
 const app = express();
 
@@ -14,6 +15,7 @@ require("dotenv").config();
 
 const component = path.resolve("components/client");
 const production = process.env.NODE_ENV === "production";
+const maxAge = 60 * 60 * 1000;
 
 // const { admin } = require("./routes");
 
@@ -31,9 +33,27 @@ mongoose
     process.exit(22);
   });
 
+const store = new mongoStore({
+  uri: process.env.MONGO_URL,
+  collection: "sess_store",
+});
+
 app.use(noCache());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencsoded({ extended: false }));
+app.use(
+  session({
+    name: "se_ssion",
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: true,
+    store,
+    cookie: {
+      maxAge,
+      expires: new Date(Date.now() + maxAge),
+    },
+  })
+);
 
 app.get("*", (req, res) =>
   !production
