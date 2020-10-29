@@ -42,12 +42,17 @@ require("dotenv").config({ path: path.resolve("../server/.env") });
         message: "Masukkan nama pengguna :",
         validate: (text) => {
           if (text) {
-            const valid = /^[a-zA-Z\s\-]+$/.test(text);
-            if (valid) return true;
-            console.log(
-              "\nNama pengguna hanya boleh huruf, spasi, atau tanda hubung !"
-            );
-            return false;
+            if (text.length < 6) {
+              console.log("\nPanjang minimal nama pengguna harus 6 karakter");
+              return false;
+            } else {
+              const valid = /^[a-zA-Z\s\-]+$/.test(text);
+              if (valid) return true;
+              console.log(
+                "\nNama pengguna hanya boleh huruf, spasi, atau tanda hubung !"
+              );
+              return false;
+            }
           } else {
             console.log("Nama pengguna harus diisi !");
             return false;
@@ -59,6 +64,23 @@ require("dotenv").config({ path: path.resolve("../server/.env") });
         type: "list",
         message: "Pilih user access :",
         choices: ["admin", "guru", "siswa"],
+      },
+      {
+        name: "password",
+        type: "password",
+        message: "Masukkan kata sandi :",
+        validate: (pw) => {
+          if (pw) {
+            if (pw.length < 6) {
+              console.log("Panjang minimal password harus 6 karakter");
+              return false;
+            }
+            return true;
+          } else {
+            console.log("Kata sandi harus diisi !");
+            return false;
+          }
+        },
       },
     ])
     .then((u) => {
