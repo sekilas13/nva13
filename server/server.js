@@ -4,6 +4,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const socketIO = require("socket.io");
 const bodyParser = require("body-parser");
+const noCache = require("nocache");
 // const cookie = require("cookie");
 // const { admin: adminStore } = require("./store");
 
@@ -30,8 +31,9 @@ mongoose
     process.exit(22);
   });
 
+app.use(noCache());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencsoded({ extended: false }));
 
 app.get("*", (req, res) =>
   !production
