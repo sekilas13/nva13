@@ -1,0 +1,16 @@
+{
+  "name": "@vote/cli",
+  "version": "1.0.0",
+  "description": "Aplikasi CLI Voting yang dikhususkan untuk admin",
+  "main": "propmt.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ezra Khairan Permana",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "inquirer": "^7.3.3",
+    "mongoose": "^5.10.11"
+  }
+}
