@@ -1,4 +1,5 @@
 const http = require("http");
+const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
 const socketIO = require("socket.io");
@@ -13,7 +14,7 @@ require("dotenv").config();
 const component = path.resolve("components/client");
 const production = process.env.NODE_ENV === "production";
 
-const { admin } = require("./routes");
+// const { admin } = require("./routes");
 
 const PORT = process.env.PORT || 3000;
 mongoose
@@ -38,7 +39,7 @@ app.get("*", (req, res) =>
     : res.sendFile(path.join(component, "index.html"))
 );
 
-app.use("/admin", admin);
+// app.use("/admin", admin);
 // app.use("/siswa");
 
 const server = http.createServer(app);
