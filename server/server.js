@@ -19,7 +19,7 @@ const production = process.env.NODE_ENV === "production";
 const maxAge = 60 * 60 * 1000;
 
 // const { admin } = require("./routes");
-const { local: LocalStrategy } = require("./passport");
+const { local: LocalStrategy, jwt: JWTStrategy } = require("./passport");
 
 const PORT = process.env.PORT || 3000;
 mongoose
@@ -58,6 +58,7 @@ app.use(
 );
 
 LocalStrategy(passport);
+JWTStrategy(passport);
 
 app.use(passport.initialize());
 app.use(passport.session());
