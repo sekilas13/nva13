@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { useEffect, useContext, useState } from "react";
+import { useEffect, useContext, useState, useCallback } from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import { Navi } from "../../style/Admin";
 import io from "socket.io-client";
@@ -13,14 +13,18 @@ import {
 import { Context } from "../../utils/stateProvider";
 
 function Admin() {
-  const [toastPop, setToastPop] = useState(false);
+  const [toastPop, STP] = useState(false);
   document.querySelector("body").style.backgroundColor = "white";
 
   const store = useContext(Context);
   const socket = io();
 
-  const newConnection = () =>
-    socket.emit("new user", { role: store.role, id: store.userId });
+  const newConnection = useCallback(
+    () => socket.emit("new user", { role: store.role, id: store.userId }),
+    [store, socket]
+  );
+
+  const setToastPop = useCallback(() => STP(!toastPop), [toastPop, STP]);
 
   useEffect(() => {
     newConnection();
@@ -42,7 +46,7 @@ function Admin() {
         icon: "success",
         title: store.isNewLogin ? "Login sukses" : "Selamat datang kembali",
       });
-      setToastPop(!toastPop);
+      setToastPop();
     }
   });
 
