@@ -8,7 +8,7 @@ const socketIO = require("socket.io");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const mongoStore = require("connect-mongodb-session")(session);
-// const cookie = require("cookie");
+const cookie = require("cookie");
 
 const app = express();
 
@@ -85,7 +85,16 @@ const Sock = socketIO(server);
 
 Sock.on("connection", (s) => {
   s.on("new user", (d) => {
-    // const c = cookie.parse(s.handshake.headers.cookie);
-    s.broadcast.emit("admin:new user", d);
+    const c = cookie.parse(s.handshake.headers.cookie);
+    const sessID = c.se_ssion.split("s:")[1].split(".")[0];
+    store.get(sessID, (err, data) => {
+      if (!err) {
+        if (data.passport.user) {
+          s.broadcast.emit("admin:new user", d);
+        } else {
+          s.disconnect();
+        }
+      }
+    });
   });
 });
