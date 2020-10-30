@@ -51,7 +51,7 @@ function Login() {
         store.setUsername(data.user.username);
         store.setNewLogin(true);
         store.setJWT(data.token);
-        store.setRole(data.role);
+        store.setRole(data.user.role);
         Cookie.set(`sess_${data.role}`, data.user.sessID, {
           expires: new Date(new Date().getTime() + 60 * 60 * 1000),
         });
