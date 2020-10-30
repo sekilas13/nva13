@@ -18,7 +18,7 @@ const component = path.resolve("components/client");
 const production = process.env.NODE_ENV === "production";
 const maxAge = 60 * 60 * 1000;
 
-// const { admin } = require("./routes");
+const { auth } = require("./routes");
 const { local: LocalStrategy, jwt: JWTStrategy } = require("./passport");
 
 const PORT = process.env.PORT || 3000;
@@ -69,6 +69,7 @@ app.get("*", (req, res) =>
     : res.sendFile(path.join(component, "index.html"))
 );
 
+app.use("/auth", auth);
 // app.use("/admin", admin);
 // app.use("/siswa");
 
