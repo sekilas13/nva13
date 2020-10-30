@@ -1,6 +1,6 @@
 const path = require("path");
 
 module.exports = {
-  local: path.join(__dirname, "local.js"),
-  jwt: path.join(__dirname, "jwt.js"),
+  local: require(path.join(__dirname, "local.js")),
+  jwt: require(path.join(__dirname, "jwt.js")),
 };
