@@ -19,8 +19,8 @@ function Login() {
   const setState = (data) => UNSAFE_setState({ ...state, ...data });
 
   useEffect(() => {
-    const session = Cookie.get("session_admiin");
-    if (session) store.setLogin(true);
+    // const session = Cookie.get("session_admiin");
+    // if (session) store.setLogin(true);
   });
 
   const { register, handleSubmit, errors, setValue } = useForm();
@@ -45,13 +45,15 @@ function Login() {
     });
 
     axios
-      .post("/admin/login", data)
+      .post("/auth/login", data)
       .then(({ data }) => {
         store.setUID(data.user.id);
         store.setUsername(data.user.username);
         store.setNewLogin(true);
-        Cookie.set("session_admiin", data.user.sessID.value, {
-          expires: new Date(new Date().getTime() + data.user.sessID.expires),
+        store.setJWT(data.token);
+        store.setRole(data.role);
+        Cookie.set(`sess_${data.role}`, data.user.sessID, {
+          expires: new Date(new Date().getTime() + 60 * 60 * 1000),
         });
         Loading.close();
         store.setLogin(true);
