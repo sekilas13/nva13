@@ -11,9 +11,8 @@ function Admin() {
   const store = useContext(Context);
   const socket = io();
 
-  const newConnection = () => {
+  const newConnection = () =>
     socket.emit("new user", { role: store.role, id: store.userId });
-  };
 
   useEffect(() => {
     newConnection();
