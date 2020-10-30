@@ -3,8 +3,6 @@ import { Fragment, useEffect, useContext } from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import { Navi } from "../style/Dashboard";
 import io from "socket.io-client";
-import Cookie from "js-cookie";
-import axios from "axios";
 import { Context } from "../utils/stateProvider";
 
 function Dashboard() {
@@ -14,20 +12,11 @@ function Dashboard() {
   const socket = io();
 
   const newConnection = () => {
-    socket.emit("new user", { role: "admin", id: store.userId });
+    socket.emit("new user", { role: store.role, id: store.userId });
   };
 
   useEffect(() => {
-    if (store.isNewLogin !== true) {
-      const sess = Cookie.get("session_admiin");
-      axios.post("/admin/session", { sess }).then(({ data }) => {
-        store.setUID(data._id);
-        store.setUsername(data.username);
-        newConnection();
-      });
-    } else {
-      newConnection();
-    }
+    newConnection();
 
     const Toast = Swal.mixin({
       toast: true,
