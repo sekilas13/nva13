@@ -8,7 +8,7 @@ const socketIO = require("socket.io");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const mongoStore = require("connect-mongodb-session")(session);
-const cookie = require("cookie");
+const jwt = require("jsonwebtoken");
 
 const app = express();
 
@@ -83,18 +83,19 @@ server.listen(PORT, () =>
 
 const Sock = socketIO(server);
 
-Sock.on("connection", (s) => {
-  s.on("new user", (d) => {
-    const c = cookie.parse(s.handshake.headers.cookie);
-    const sessID = c.se_ssion.split("s:")[1].split(".")[0];
-    store.get(sessID, (err, data) => {
-      if (!err) {
-        if (data.passport.user) {
-          s.broadcast.emit("admin:new user", d);
-        } else {
-          s.disconnect();
-        }
-      }
+Sock.use((socket, next) => {
+  if (socket.handshake.query && socket.handshake.query.token) {
+    jwt.verify(socket.handshake.query.token, process.env.JWT_SECRET, function (
+      err,
+      decoded
+    ) {
+      if (err) return next(new Error("Authentication error"));
+      socket.decoded = decoded;
+      next();
     });
-  });
+  } else {
+    next(new Error("Authentication error"));
+  }
+}).on("connection", (s) => {
+  s.on("new user", (d) => s.broadcast.emit("admin:new user", d));
 });
