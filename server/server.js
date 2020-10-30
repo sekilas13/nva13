@@ -42,7 +42,7 @@ const store = new mongoStore({
 
 app.use(noCache());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencsoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(
   session({
     name: "se_ssion",
