@@ -18,7 +18,11 @@ Router.post("/login", (req, res, next) => {
         return res.status(400).json({ errors: err });
       }
 
-      const token = jwt.sign(user, process.env.JWT_SECRET);
+      const token = jwt.sign(
+        { id: user._id, email: user.email },
+        process.env.JWT_SECRET,
+        { expiresIn: "1h" }
+      );
 
       return res.status(200).json({
         success: true,
@@ -26,10 +30,7 @@ Router.post("/login", (req, res, next) => {
           role: user.role,
           id: user.id,
           email: user.email,
-          sessID: {
-            value: req.sessionID,
-            expires: expired,
-          },
+          sessID: req.sessionID,
           token,
         },
       });
