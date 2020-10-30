@@ -38,4 +38,25 @@ Router.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 
+Router.post("/session", (req, res) => {
+  const sessPass = req.session.passport;
+  const { checking, exist } = req.body;
+
+  if (checking) {
+    if (sessPass) {
+      res.json({ isExist: true });
+    } else {
+      res.json({ isExist: false });
+    }
+  } else {
+    if (exist) {
+      const { _id: id, email, username, role } = req.user;
+      const token = jwt.sign({ id, email }, process.env.JWT_SECRET, {
+        expiresIn: "1h",
+      });
+      res.json({ id, email, username, role, token });
+    }
+  }
+});
+
 module.exports = Router;

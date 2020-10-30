@@ -6,9 +6,16 @@ import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import { Card, Control, Label, Hr, Error, Spinner } from "../style/Login";
 import { Context } from "../utils/stateProvider";
 import { useForm } from "react-hook-form";
-import Cookie from "js-cookie";
 
 const MySwal = withReactContent(Swal);
+
+const swalConfig = {
+  allowEscapeKey: false,
+  showConfirmButton: false,
+  allowOutsideClick: false,
+  allowEnterKey: false,
+  width: "15rem",
+};
 
 function Login() {
   document.querySelector("body").style.backgroundColor = "#0062cc";
@@ -19,10 +26,40 @@ function Login() {
   const setState = (data) => UNSAFE_setState({ ...state, ...data });
 
   useEffect(() => {
-    const session = Cookie.get("sess_local");
-    if (session) {
-      // do something...
-    }
+    axios.post("/auth/session", { checking: true }).then(({ data }) => {
+      if (data.isExist) {
+        const Loading = MySwal.fire({
+          title: (
+            <div>
+              <h2>Loading</h2>
+            </div>
+          ),
+          html: (
+            <div>
+              <Spinner animation="border" variant="primary" />
+              <p className="mt-3">
+                Anda sudah login, sedang mengambil data dari server
+              </p>
+            </div>
+          ),
+          ...swalConfig,
+        });
+
+        axios
+          .post("/auth/session", {
+            exist: data.isExist,
+            checking: !data.isExist,
+          })
+          .then(({ data }) => {
+            store.setUID(data.id);
+            store.setUsername(data.username);
+            store.setJWT(data.token);
+            store.setRole(data.role);
+            Loading.close();
+            store.setLogin(true);
+          });
+      }
+    });
   });
 
   const { register, handleSubmit, errors, setValue } = useForm();
@@ -39,11 +76,7 @@ function Login() {
           <Spinner animation="border" variant="primary" />
         </div>
       ),
-      allowEscapeKey: false,
-      showConfirmButton: false,
-      allowOutsideClick: false,
-      allowEnterKey: false,
-      width: "15rem",
+      ...swalConfig,
     });
 
     axios
@@ -54,9 +87,6 @@ function Login() {
         store.setNewLogin(true);
         store.setJWT(data.token);
         store.setRole(data.user.role);
-        Cookie.set(`sess_local`, data.user.sessID, {
-          expires: new Date(new Date().getTime() + 60 * 60 * 1000),
-        });
         Loading.close();
         store.setLogin(true);
       })
