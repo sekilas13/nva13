@@ -1,11 +1,11 @@
 import Swal from "sweetalert2";
 import { Fragment, useEffect, useContext } from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
-import { Navi } from "../style/Dashboard";
+import { Navi } from "../style/Admin";
 import io from "socket.io-client";
 import { Context } from "../utils/stateProvider";
 
-function Dashboard() {
+function Admin() {
   document.querySelector("body").style.backgroundColor = "white";
 
   const store = useContext(Context);
@@ -42,7 +42,7 @@ function Dashboard() {
     <Fragment>
       <Navi variant="dark">
         <Container>
-          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+          <Navbar.Brand href="#home">Admin Panel</Navbar.Brand>
           <Nav className="my-auto">
             <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#features">Features</Nav.Link>
@@ -55,4 +55,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default Admin;
