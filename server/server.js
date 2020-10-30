@@ -53,6 +53,7 @@ app.use(
     cookie: {
       maxAge,
       expires: new Date(Date.now() + maxAge),
+      sameSite: "lax",
     },
   })
 );
