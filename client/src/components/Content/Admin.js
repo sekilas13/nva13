@@ -71,7 +71,11 @@ function Admin() {
           </Nav>
         </Container>
       </Navi>
-      <Switch></Switch>
+      <Switch>
+        <Route exact path={path}>
+          <p>Path /</p>
+        </Route>
+      </Switch>
     </Router>
   );
 }
