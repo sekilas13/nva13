@@ -19,8 +19,10 @@ function Login() {
   const setState = (data) => UNSAFE_setState({ ...state, ...data });
 
   useEffect(() => {
-    // const session = Cookie.get("session_admiin");
-    // if (session) store.setLogin(true);
+    const session = Cookie.get("sess_local");
+    if (session) {
+      // do something...
+    }
   });
 
   const { register, handleSubmit, errors, setValue } = useForm();
@@ -52,7 +54,7 @@ function Login() {
         store.setNewLogin(true);
         store.setJWT(data.token);
         store.setRole(data.user.role);
-        Cookie.set(`sess_${data.role}`, data.user.sessID, {
+        Cookie.set(`sess_local`, data.user.sessID, {
           expires: new Date(new Date().getTime() + 60 * 60 * 1000),
         });
         Loading.close();
