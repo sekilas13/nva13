@@ -11,6 +11,7 @@ import {
   useRouteMatch,
 } from "react-router-dom";
 import { Context } from "../../utils/stateProvider";
+import { Main } from './adm';
 
 function Admin() {
   const [toastPop, STP] = useState(false);
@@ -72,9 +73,7 @@ function Admin() {
         </Container>
       </Navi>
       <Switch>
-        <Route exact path={path}>
-          <p>Path /</p>
-        </Route>
+        <Route exact path={path} component={Main}/>
       </Switch>
     </Router>
   );
