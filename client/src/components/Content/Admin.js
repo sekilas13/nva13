@@ -18,7 +18,7 @@ function Admin() {
   document.querySelector("body").style.backgroundColor = "white";
 
   const store = useContext(Context);
-  const socket = io();
+  const socket = io({ query: { token: store.token } });
 
   const newConnection = useCallback(
     () => socket.emit("new user", { role: store.role, id: store.userId }),
