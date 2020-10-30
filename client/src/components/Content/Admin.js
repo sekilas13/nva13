@@ -1,9 +1,9 @@
 import Swal from "sweetalert2";
 import { Fragment, useEffect, useContext } from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
-import { Navi } from "../style/Admin";
+import { Navi } from "../../style/Admin";
 import io from "socket.io-client";
-import { Context } from "../utils/stateProvider";
+import { Context } from "../../utils/stateProvider";
 
 function Admin() {
   document.querySelector("body").style.backgroundColor = "white";

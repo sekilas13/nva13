@@ -1,4 +1,4 @@
 import Login from "./Login";
-import Admin from "./Admin";
+import Content from "./Content";
 
-export { Login, Admin };
+export { Login, Content };
