@@ -76,9 +76,7 @@ function Admin() {
         </Container>
       </Navi>
       <Switch>
-        <Container>
-          <Route exact path={path} component={Main} />
-        </Container>
+        <Route exact path={path} component={Main} />
       </Switch>
     </Router>
   );
