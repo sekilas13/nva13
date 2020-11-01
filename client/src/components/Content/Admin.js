@@ -51,7 +51,7 @@ function Admin() {
     }
   });
 
-  socket.on("admin:new user", (d) => console.log(d));
+  socket.on("admin:new user", (d) => store.addLog(d));
 
   const { path, url } = useRouteMatch();
 

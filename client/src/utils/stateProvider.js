@@ -11,12 +11,15 @@ const Provider = ({ children }) => {
     username: null,
     userId: null,
     role: null,
+    log: [],
     setLogin: (bool) => (store.isLogin = bool),
     setNewLogin: (bool) => (store.isNewLogin = bool),
     setUsername: (string) => (store.username = string),
     setUID: (string) => (store.userId = string),
     setJWT: (string) => (store.token = string),
     setRole: (string) => (store.role = string),
+    addLog: (arr) =>
+      !store.log.find((x) => x.id === arr.id) && store.log.push(arr),
   }));
 
   return <Context.Provider value={store}>{children}</Context.Provider>;
