@@ -20,16 +20,9 @@ function Admin() {
   const store = useContext(Context);
   const socket = io({ query: { token: store.token } });
 
-  const newConnection = useCallback(
-    () => socket.emit("new user", { role: store.role, id: store.userId }),
-    [store, socket]
-  );
-
   const setToastPop = useCallback(() => STP(!toastPop), [toastPop, STP]);
 
   useEffect(() => {
-    newConnection();
-
     const Toast = Swal.mixin({
       toast: true,
       position: "top-end",
@@ -59,7 +52,7 @@ function Admin() {
     <Router>
       <Navi variant="dark">
         <Container>
-          <Navbar.Brand as={Link} to={`${url}/`}>
+          <Navbar.Brand as={Link} to={url}>
             Admin Panel
           </Navbar.Brand>
           <Nav className="my-auto">
