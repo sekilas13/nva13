@@ -64,7 +64,8 @@ JWTStrategy(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get("*", (req, res) =>
+app.use(express.static(component));
+app.get("/*", (req, res) =>
   !production
     ? res.redirect("http://localhost:4000")
     : res.sendFile(path.join(component, "index.html"))
