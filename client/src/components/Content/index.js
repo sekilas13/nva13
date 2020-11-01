@@ -3,6 +3,7 @@ import { Context } from "../../utils/stateProvider";
 
 // Component
 import Admin from "./Admin";
+import Siswa from "./Siswa";
 
 function Content() {
   const store = useContext(Context);
@@ -11,7 +12,7 @@ function Content() {
     <Fragment>
       {store.role === "admin" && <Admin />}
       {store.role === "guru" && <p>Guru</p>}
-      {store.role === "siswa" && <p>Siswa</p>}
+      {store.role === "siswa" && <Siswa />}
     </Fragment>
   );
 }
