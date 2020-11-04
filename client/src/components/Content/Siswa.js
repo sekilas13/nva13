@@ -1,10 +1,9 @@
 import Swal from "sweetalert2";
-import { useEffect, useContext, useState, useCallback } from "react";
+import { useEffect, useContext, useCallback } from "react";
 import io from "socket.io-client";
 import { Context } from "../../utils/stateProvider";
 
 function Siswa() {
-  const [toastPop, STP] = useState(false);
   document.querySelector("body").style.backgroundColor = "white";
 
   const store = useContext(Context);
@@ -14,11 +13,10 @@ function Siswa() {
     socket.emit("new user", {
       role: store.role,
       id: store.userId,
+      username: store.username,
       sended: Date.now(),
     });
   }, [store, socket]);
-
-  const setToastPop = useCallback(() => STP(!toastPop), [toastPop, STP]);
 
   useEffect(() => {
     newConnection();
@@ -35,13 +33,10 @@ function Siswa() {
       },
     });
 
-    if (!toastPop) {
-      Toast.fire({
-        icon: "success",
-        title: store.isNewLogin ? "Login sukses" : "Selamat datang kembali",
-      });
-      setToastPop();
-    }
+    Toast.fire({
+      icon: "success",
+      title: store.isNewLogin ? "Login sukses" : "Selamat datang kembali",
+    });
   });
 
   return <p>Siswa</p>;
