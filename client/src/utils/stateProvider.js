@@ -18,8 +18,7 @@ const Provider = ({ children }) => {
     setUID: (string) => (store.userId = string),
     setJWT: (string) => (store.token = string),
     setRole: (string) => (store.role = string),
-    addLog: (arr) =>
-      !store.log.find((x) => x.id === arr.id) && store.log.push(arr),
+    addLog: (arr) => store.log.push(arr),
   }));
 
   return <Context.Provider value={store}>{children}</Context.Provider>;
