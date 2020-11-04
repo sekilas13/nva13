@@ -47,6 +47,7 @@ Router.post("/session", (req, res) => {
       res.json({ isExist: true });
     } else {
       res.json({ isExist: false });
+      req.logOut();
     }
   } else {
     if (exist) {
