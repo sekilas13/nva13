@@ -3,7 +3,7 @@ import { Context } from "../../../utils/stateProvider";
 import { Card, Container, Row, Col, ListGroup, Badge } from "react-bootstrap";
 import { observer } from "mobx-react";
 
-function Main() {
+function Main({ connected }) {
   const store = useContext(Context);
 
   return (
@@ -25,6 +25,22 @@ function Main() {
                   </ListGroup.Item>
                 ))}
               </ListGroup>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={4}>
+          <Card>
+            <Card.Body>
+              <h4>Status Koneksi</h4>
+              <hr />
+              <p>Anda login sebagai Admin</p>
+              <p>Username : {store.username}</p>
+              <p>
+                Kondisi Socket :{" "}
+                <Badge variant={connected ? "success" : "danger"}>
+                  {connected ? "tersambung" : "terputus"}
+                </Badge>
+              </p>
             </Card.Body>
           </Card>
         </Col>
