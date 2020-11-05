@@ -44,18 +44,10 @@ function Admin() {
     }
   });
 
-  socket.on("admin:new user", (d) => {
-    if (store.log.find((x) => x.id === d.id)) {
-      if (store.log.find((x) => x.id === d.id && x.sended !== d.sended)) {
-        console.log(`re-login`);
-        console.log(d);
-        store.addLog({ ...d, type: "re-login" });
-      }
-    } else {
-      store.addLog({ ...d, type: "new login" });
-      console.log(`new login`);
-    }
-  });
+  socket.on(
+    "admin:new user",
+    (d) => !store.log.find((x) => x.id === d.id) && store.addLog(d)
+  );
 
   const { path, url } = useRouteMatch();
 
@@ -80,7 +72,11 @@ function Admin() {
         </Container>
       </Navi>
       <Switch>
-        <Route exact path={path} component={Main} />
+        <Route
+          exact
+          path={path}
+          component={() => <Main connected={socket.connected} />}
+        />
       </Switch>
     </Router>
   );
