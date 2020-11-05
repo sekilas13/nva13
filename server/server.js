@@ -98,5 +98,7 @@ Sock.use((socket, next) => {
     next(new Error("Authentication error"));
   }
 }).on("connection", (s) => {
-  s.on("new user", (d) => s.broadcast.emit("admin:new user", d));
+  s.on("new user", (d) =>
+    s.broadcast.emit("admin:new user", { ...d, type: "new login" })
+  );
 });
