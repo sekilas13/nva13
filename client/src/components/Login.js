@@ -67,7 +67,7 @@ function Login() {
         store.setUID(data.user.id);
         store.setUsername(data.user.username);
         store.setNewLogin(true);
-        store.setJWT(data.token);
+        store.setJWT(data.user.token);
         store.setRole(data.user.role);
         Loading.close();
         store.setLogin(true);
