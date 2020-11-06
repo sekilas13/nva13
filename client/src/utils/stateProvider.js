@@ -21,6 +21,14 @@ const Provider = ({ children }) => {
     setRole: (string) => (store.role = string),
     addLog: (arr) => store.log.push(arr),
     config: { sweetal },
+    Logout: function () {
+      this.setNewLogin(false);
+      this.setUsername(null);
+      this.setUID(null);
+      this.setJWT(null);
+      this.setRole(null);
+      this.setLogin(false);
+    },
   }));
 
   return <Context.Provider value={store}>{children}</Context.Provider>;
