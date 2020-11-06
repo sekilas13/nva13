@@ -40,6 +40,7 @@ Router.post("/login", (req, res, next) => {
 
 Router.delete("/logout", (req, res, next) => {
   if (req.isAuthenticated()) {
+    req.session.destroy();
     req.logOut();
     res.json({ success: true, message: "Anda berhasil logout" });
   } else {
