@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 import { useEffect, useContext, useState, useCallback } from "react";
-import { Container, Navbar, Nav, Button } from "react-bootstrap";
+import { Container, Navbar, Nav } from "react-bootstrap";
 import { Navi } from "../../style/Admin";
 import io from "socket.io-client";
 import {
@@ -12,7 +12,7 @@ import {
 } from "react-router-dom";
 import { Context } from "../../utils/stateProvider";
 import { Main } from "./adm";
-import axios from "axios";
+import { Logout } from "../../Custom";
 
 function Admin() {
   const [toastPop, STP] = useState(false);
@@ -61,25 +61,7 @@ function Admin() {
             <Nav.Link as={Link} to={`${url}/guru`}>
               Guru
             </Nav.Link>
-            <Button
-              variant="danger"
-              onClick={() => {
-                Swal.fire(store.config.sweetal.Logout).then((result) => {
-                  if (result.isConfirmed) {
-                    axios.delete("/auth/logout").then(({ data }) => {
-                      socket.disconnect();
-                      store.Logout();
-                      Swal.mixin(store.config.sweetal.Toaster).fire({
-                        icon: "success",
-                        title: data.message,
-                      });
-                    });
-                  }
-                });
-              }}
-            >
-              Logout
-            </Button>
+            <Logout socket={socket} />
           </Nav>
         </Container>
       </Navi>
