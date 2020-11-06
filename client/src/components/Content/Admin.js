@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 import { Context } from "../../utils/stateProvider";
 import { Main } from "./adm";
+import axios from "axios";
 
 function Admin() {
   const [toastPop, STP] = useState(false);
@@ -65,11 +66,14 @@ function Admin() {
               onClick={() => {
                 Swal.fire(store.config.sweetal.Logout).then((result) => {
                   if (result.isConfirmed) {
-                    // Swal.fire(
-                    //   "Deleted!",
-                    //   "Your file has been deleted.",
-                    //   "success"
-                    // );
+                    axios.delete("/auth/logout").then(({ data }) => {
+                      socket.disconnect();
+                      store.Logout();
+                      Swal.mixin(store.config.sweetal.Toaster).fire({
+                        icon: "success",
+                        title: data.message,
+                      });
+                    });
                   }
                 });
               }}
