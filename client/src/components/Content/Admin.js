@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 import { useEffect, useContext, useState, useCallback } from "react";
-import { Container, Navbar, Nav } from "react-bootstrap";
+import { Container, Navbar, Nav, Button } from "react-bootstrap";
 import { Navi } from "../../style/Admin";
 import io from "socket.io-client";
 import {
@@ -70,6 +70,31 @@ function Admin() {
             <Nav.Link as={Link} to={`${url}/guru`}>
               Guru
             </Nav.Link>
+            <Button
+              variant="danger"
+              onClick={() => {
+                Swal.fire({
+                  title: "Apakah anda yakin?",
+                  text: "Anda akan logout dan kehilangan sesi login anda!",
+                  icon: "warning",
+                  showCancelButton: true,
+                  confirmButtonColor: "#3085d6",
+                  cancelButtonColor: "#d33",
+                  cancelButtonText: "Batal",
+                  confirmButtonText: "Ya, Logout saja",
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    // Swal.fire(
+                    //   "Deleted!",
+                    //   "Your file has been deleted.",
+                    //   "success"
+                    // );
+                  }
+                });
+              }}
+            >
+              Logout
+            </Button>
           </Nav>
         </Container>
       </Navi>
