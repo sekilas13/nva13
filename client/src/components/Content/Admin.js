@@ -23,17 +23,7 @@ function Admin() {
   const setToastPop = useCallback(() => STP(!toastPop), [toastPop, STP]);
 
   useEffect(() => {
-    const Toast = Swal.mixin({
-      toast: true,
-      position: "top-end",
-      showConfirmButton: false,
-      timer: 2500,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener("mouseenter", Swal.stopTimer);
-        toast.addEventListener("mouseleave", Swal.resumeTimer);
-      },
-    });
+    const Toast = Swal.mixin(store.config.sweetal.Toaster);
 
     if (!toastPop) {
       Toast.fire({
@@ -73,16 +63,7 @@ function Admin() {
             <Button
               variant="danger"
               onClick={() => {
-                Swal.fire({
-                  title: "Apakah anda yakin?",
-                  text: "Anda akan logout dan kehilangan sesi login anda!",
-                  icon: "warning",
-                  showCancelButton: true,
-                  confirmButtonColor: "#3085d6",
-                  cancelButtonColor: "#d33",
-                  cancelButtonText: "Batal",
-                  confirmButtonText: "Ya, Logout saja",
-                }).then((result) => {
+                Swal.fire(store.config.sweetal.Logout).then((result) => {
                   if (result.isConfirmed) {
                     // Swal.fire(
                     //   "Deleted!",

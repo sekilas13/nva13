@@ -9,14 +9,6 @@ import { useForm } from "react-hook-form";
 
 const MySwal = withReactContent(Swal);
 
-const swalConfig = {
-  allowEscapeKey: false,
-  showConfirmButton: false,
-  allowOutsideClick: false,
-  allowEnterKey: false,
-  width: "15rem",
-};
-
 function Login() {
   document.querySelector("body").style.backgroundColor = "#0062cc";
 
@@ -29,11 +21,6 @@ function Login() {
     axios.post("/auth/session", { checking: true }).then(({ data }) => {
       if (data.isExist) {
         const Loading = MySwal.fire({
-          title: (
-            <div>
-              <h2>Loading</h2>
-            </div>
-          ),
           html: (
             <div>
               <Spinner animation="border" variant="primary" />
@@ -42,7 +29,7 @@ function Login() {
               </p>
             </div>
           ),
-          ...swalConfig,
+          ...store.config.sweetal.Login,
         });
 
         axios
@@ -66,17 +53,12 @@ function Login() {
 
   const onSubmit = (data) => {
     const Loading = MySwal.fire({
-      title: (
-        <div>
-          <h2>Loading</h2>
-        </div>
-      ),
       html: (
         <div>
           <Spinner animation="border" variant="primary" />
         </div>
       ),
-      ...swalConfig,
+      ...store.config.sweetal.Login,
     });
 
     axios
