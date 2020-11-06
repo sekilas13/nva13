@@ -13,7 +13,12 @@ function Main({ connected }) {
           <Card>
             <Card.Body>
               <h2 className="text-center">Aktivitas User</h2>
-              <ListGroup>
+              <ListGroup variant={store.log.length < 1 ? "flush" : "normal"}>
+                {store.log.length < 1 && (
+                  <ListGroup.Item>
+                    Tidak ada aktivitas sejauh ini
+                  </ListGroup.Item>
+                )}
                 {store.log.map((u, i) => (
                   <ListGroup.Item key={i}>
                     <Badge variant="info">{u.role}</Badge> {u.username}{" "}
