@@ -1,5 +1,6 @@
 import { createContext } from "react";
 import { useLocalObservable } from "mobx-react";
+import { sweetal } from "../config";
 
 const Context = createContext();
 
@@ -19,6 +20,7 @@ const Provider = ({ children }) => {
     setJWT: (string) => (store.token = string),
     setRole: (string) => (store.role = string),
     addLog: (arr) => store.log.push(arr),
+    config: { sweetal },
   }));
 
   return <Context.Provider value={store}>{children}</Context.Provider>;
