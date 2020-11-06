@@ -38,6 +38,15 @@ Router.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 
+Router.delete("/logout", (req, res, next) => {
+  if (req.isAuthenticated()) {
+    req.logOut();
+    res.json({ success: true, message: "Anda berhasil logout" });
+  } else {
+    res.json({ success: false, message: "Anda tidak diautentikasi" });
+  }
+});
+
 Router.post("/session", (req, res) => {
   const sessPass = req.session.passport;
   const { checking, exist } = req.body;
