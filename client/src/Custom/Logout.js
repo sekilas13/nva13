@@ -15,12 +15,7 @@ const Logout = ({ socket }) => {
           if (result.isConfirmed) {
             axios.delete("/auth/logout").then(({ data }) => {
               if (store.role !== "admin") {
-                socket.emit("logout user", {
-                  role: store.role,
-                  id: store.userId,
-                  username: store.username,
-                  sended: Date.now(),
-                });
+                socket.emit("logout user", store.genSendData());
               }
               socket.disconnect();
               store.Logout();
