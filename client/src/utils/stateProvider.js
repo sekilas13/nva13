@@ -29,8 +29,17 @@ const Provider = ({ children }) => {
       this.setUID(null);
       this.setJWT(null);
       this.setRole(null);
+      if (this.log.length > 0) this.log = [];
       this.setSockStatus(false);
       this.setLogin(false);
+    },
+    genSendData: function () {
+      return {
+        role: this.role,
+        id: this.userId,
+        username: this.username,
+        sended: Date.now(),
+      };
     },
   }));
 
