@@ -35,19 +35,29 @@ function Admin() {
     }
   });
 
-  socket.on(
-    "admin:new user",
-    (d) =>
-      !store.log.find((x) => x.id === d.id && x.type === "new login") &&
-      store.addLog(d)
-  );
+  socket.on("admin:new user", (d) => {
+    if (!store.log.find((x) => x.id === d.id && x.type === "new login")) {
+      store.addLog(d);
+    } else {
+      if (!store.log.find((x) => x.id === d.id && x.sended === d.sended)) {
+        let data = d;
+        data.type = "re login";
+        store.addLog(data);
+      }
+    }
+  });
 
-  socket.on(
-    "admin:logout user",
-    (d) =>
-      !store.log.find((x) => x.id === d.id && x.type === "logout") &&
-      store.addLog(d)
-  );
+  socket.on("admin:logout user", (d) => {
+    if (!store.log.find((x) => x.id === d.id && x.type === "logout")) {
+      store.addLog(d);
+    } else {
+      if (!store.log.find((x) => x.id === d.id && x.sended === d.sended)) {
+        let data = d;
+        data.type = "re logout";
+        store.addLog(data);
+      }
+    }
+  });
 
   const { path, url } = useRouteMatch();
 
