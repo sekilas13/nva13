@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import { useEffect, useContext, useCallback } from "react";
 import io from "socket.io-client";
 import { Context } from "../../utils/stateProvider";
+import { Logout } from "../../Custom";
 
 function Siswa() {
   document.querySelector("body").style.backgroundColor = "white";
@@ -29,7 +30,12 @@ function Siswa() {
     });
   });
 
-  return <p>Siswa</p>;
+  return (
+    <>
+      <p>Siswa</p>
+      <Logout socket={socket} />
+    </>
+  );
 }
 
 export default Siswa;
