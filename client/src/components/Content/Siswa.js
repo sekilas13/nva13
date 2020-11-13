@@ -11,12 +11,7 @@ function Siswa() {
   const socket = io({ query: { token: store.token } });
 
   const newConnection = useCallback(() => {
-    socket.emit("new user", {
-      role: store.role,
-      id: store.userId,
-      username: store.username,
-      sended: Date.now(),
-    });
+    socket.emit("new user", store.genSendData());
   }, [store, socket]);
 
   useEffect(() => {
