@@ -22,6 +22,10 @@ function Admin() {
   const socket = io({ query: { token: store.token } });
 
   const setToastPop = useCallback(() => STP(!toastPop), [toastPop, STP]);
+  const setSockStatus = useCallback(
+    (connected) => store.setSockStatus(connected),
+    [store]
+  );
 
   useEffect(() => {
     const Toast = Swal.mixin(store.config.sweetal.Toaster);
@@ -34,6 +38,11 @@ function Admin() {
       setToastPop();
     }
   });
+
+  useEffect(() => setSockStatus(socket.connected), [
+    socket.connected,
+    setSockStatus,
+  ]);
 
   socket.on("admin:new user", (d) => {
     if (!store.log.find((x) => x.id === d.id && x.type === "new login")) {
@@ -83,11 +92,7 @@ function Admin() {
         </Container>
       </Navi>
       <Switch>
-        <Route
-          exact
-          path={path}
-          component={() => <Main connected={socket.connected} />}
-        />
+        <Route exact path={path} component={Main} />
       </Switch>
     </Router>
   );

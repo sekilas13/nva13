@@ -12,6 +12,7 @@ const Provider = ({ children }) => {
     username: null,
     userId: null,
     role: null,
+    socketStatus: false,
     log: [],
     setLogin: (bool) => (store.isLogin = bool),
     setNewLogin: (bool) => (store.isNewLogin = bool),
@@ -20,6 +21,7 @@ const Provider = ({ children }) => {
     setJWT: (string) => (store.token = string),
     setRole: (string) => (store.role = string),
     addLog: (arr) => store.log.push(arr),
+    setSockStatus: (bool) => (store.socketStatus = bool),
     config: { sweetal },
     Logout: function () {
       this.setNewLogin(false);
@@ -27,6 +29,7 @@ const Provider = ({ children }) => {
       this.setUID(null);
       this.setJWT(null);
       this.setRole(null);
+      this.setSockStatus(false);
       this.setLogin(false);
     },
   }));

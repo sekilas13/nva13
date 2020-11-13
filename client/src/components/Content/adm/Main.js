@@ -4,8 +4,9 @@ import { Card, Container, Row, Col, ListGroup, Badge } from "react-bootstrap";
 import { observer } from "mobx-react";
 import { updateTime } from "../../../utils/dateConversion";
 
-function Main({ connected }) {
+function Main() {
   const store = useContext(Context);
+  const connected = store.socketStatus;
 
   return (
     <Container>
