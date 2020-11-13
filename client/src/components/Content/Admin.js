@@ -42,6 +42,13 @@ function Admin() {
       store.addLog(d)
   );
 
+  socket.on(
+    "admin:logout user",
+    (d) =>
+      !store.log.find((x) => x.id === d.id && x.type === "new login") &&
+      store.addLog(d)
+  );
+
   const { path, url } = useRouteMatch();
 
   return (
