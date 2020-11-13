@@ -45,7 +45,7 @@ function Admin() {
   socket.on(
     "admin:logout user",
     (d) =>
-      !store.log.find((x) => x.id === d.id && x.type === "new login") &&
+      !store.log.find((x) => x.id === d.id && x.type === "logout") &&
       store.addLog(d)
   );
 
