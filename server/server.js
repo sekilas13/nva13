@@ -101,4 +101,8 @@ Sock.use((socket, next) => {
   s.on("new user", (d) =>
     s.broadcast.emit("admin:new user", { ...d, type: "new login" })
   );
+
+  s.on("logout user", (d) => {
+    s.broadcast.emit("admin:logout user", { ...d, type: "logout" });
+  });
 });
