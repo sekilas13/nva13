@@ -2,6 +2,7 @@ import { useContext, Fragment } from "react";
 import { Context } from "../../../utils/stateProvider";
 import { Card, Container, Row, Col, ListGroup, Badge } from "react-bootstrap";
 import { observer } from "mobx-react";
+import { updateTime } from "../../../utils/dateConversion";
 
 function Main({ connected }) {
   const store = useContext(Context);
@@ -19,16 +20,27 @@ function Main({ connected }) {
                     Tidak ada aktivitas sejauh ini
                   </ListGroup.Item>
                 )}
-                {store.log.map((u, i) => (
-                  <ListGroup.Item key={i}>
-                    <Badge variant="info">{u.role}</Badge> {u.username}{" "}
-                    {u.type === "new login" && (
-                      <Fragment>
-                        berhasil <Badge variant="success">login</Badge>
-                      </Fragment>
-                    )}
-                  </ListGroup.Item>
-                ))}
+                {store.log.map((u, i) => {
+                  const time = new Date(u.sended);
+                  return (
+                    <ListGroup.Item key={i} className="text-center">
+                      <Badge variant="info">{u.role}</Badge> {u.username}{" "}
+                      {u.type === "new login" && (
+                        <Fragment>
+                          berhasil <Badge variant="success">login</Badge>
+                        </Fragment>
+                      )}
+                      {u.type === "logout" && (
+                        <Fragment>
+                          berhasil <Badge variant="warning">logout</Badge>
+                        </Fragment>
+                      )}{" "}
+                      pada pukul {updateTime(time.getHours())}:
+                      {updateTime(time.getMinutes())}:
+                      {updateTime(time.getSeconds())}
+                    </ListGroup.Item>
+                  );
+                })}
               </ListGroup>
             </Card.Body>
           </Card>
