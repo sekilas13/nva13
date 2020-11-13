@@ -25,18 +25,22 @@ function Main({ connected }) {
                   return (
                     <ListGroup.Item key={i} className="text-center">
                       <Badge variant="info">{u.role}</Badge> {u.username}{" "}
-                      {u.type === "new login" ||
-                        (u.type === "re login" && (
-                          <Fragment>
-                            berhasil <Badge variant="success">{u.type}</Badge>
-                          </Fragment>
-                        ))}
-                      {u.type === "logout" ||
-                        (u.type === "re logout" && (
-                          <Fragment>
-                            berhasil <Badge variant="warning">{u.type}</Badge>
-                          </Fragment>
-                        ))}{" "}
+                      {(u.type === "new login" || u.type === "re login") && (
+                        <Fragment>
+                          berhasil{" "}
+                          <Badge variant="success">
+                            {u.type === "new login" ? "login" : "re-login"}
+                          </Badge>
+                        </Fragment>
+                      )}
+                      {(u.type === "logout" || u.type === "re logout") && (
+                        <Fragment>
+                          berhasil{" "}
+                          <Badge variant="warning">
+                            {u.type === "logout" ? "logout" : "re-logout"}
+                          </Badge>
+                        </Fragment>
+                      )}{" "}
                       pada pukul {updateTime(time.getHours())}:
                       {updateTime(time.getMinutes())}:
                       {updateTime(time.getSeconds())}
