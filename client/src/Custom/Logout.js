@@ -14,6 +14,14 @@ const Logout = ({ socket }) => {
         Swal.fire(store.config.sweetal.Logout).then((result) => {
           if (result.isConfirmed) {
             axios.delete("/auth/logout").then(({ data }) => {
+              if (store.role !== "admin") {
+                socket.emit("logout user", {
+                  role: store.role,
+                  id: store.userId,
+                  username: store.username,
+                  sended: Date.now(),
+                });
+              }
               socket.disconnect();
               store.Logout();
               Swal.mixin(store.config.sweetal.Toaster).fire({
