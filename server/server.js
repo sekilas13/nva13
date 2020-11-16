@@ -65,15 +65,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(express.static(component));
+
+app.use("/auth", auth);
+app.use("/admin", admin);
+// app.use("/siswa");
+
 app.get("/*", (req, res) =>
   !production
     ? res.redirect("http://localhost:4000")
     : res.sendFile(path.join(component, "index.html"))
 );
-
-app.use("/auth", auth);
-app.use("/admin", passport.authorize("jwt"), admin);
-// app.use("/siswa");
 
 const server = http.createServer(app);
 server.listen(PORT, () =>
