@@ -11,7 +11,7 @@ import {
   useRouteMatch,
 } from "react-router-dom";
 import { Context } from "../../utils/stateProvider";
-import { Main } from "./adm";
+import { Main, Siswa } from "./adm";
 import { Logout } from "../../Custom";
 
 function Admin() {
@@ -93,6 +93,7 @@ function Admin() {
       </Navi>
       <Switch>
         <Route exact path={path} component={Main} />
+        <Route path={`${path}/siswa`} component={Siswa} />
       </Switch>
     </Router>
   );
