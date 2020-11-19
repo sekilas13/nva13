@@ -29,7 +29,9 @@ node install
 
 ### Menjalankan Aplikasinya
 
-Mohon maaf jika ini adalah cara yang tidak efisien. Hal ini akan segera diperbaiki di masa mendatang. Lakukan di dua terminal yang berbeda.
+> Mohon maaf jika ini adalah cara yang tidak efisien. Hal ini akan segera diperbaiki di masa mendatang.
+
+Lakukan di dua command line yang berbeda.
 
 ```sh
 # server
