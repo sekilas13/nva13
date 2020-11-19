@@ -3,7 +3,7 @@
 </p>
 
 <h2 align="center">RVA 13</h2>
-<h2 align="center">React Voting App 13<h4>
+<h2 align="center">React Voting App 13</h2>
 
 ---
 
