@@ -11,7 +11,7 @@ module.exports = (passport) =>
         secretOrKey: process.env.JWT_SECRET,
       },
       (payload, done) => {
-        return User.findOne({ _id: payload._id })
+        return User.findById(payload.id)
           .then((user) => {
             return done(null, user);
           })
