@@ -17,6 +17,30 @@ Anda butuh
 - Node.js Dan NPM
 - MongoDB untuk menyimpan data
 
+## Pemakaian
+
+### Menginstall package
+
+Anda ke root directory project dan menjalankan
+
+```sh
+node install
+```
+
+### Menjalankan Aplikasinya
+
+Mohon maaf jika ini adalah cara yang tidak efisien. Hal ini akan segera diperbaiki di masa mendatang. Lakukan di dua terminal yang berbeda.
+
+```sh
+# server
+npm run dev
+```
+
+```sh
+# client
+npm start
+```
+
 ## Dibuat dengan
 
 - [Node.js](https://nodejs.org/en/) - Software untuk backend
