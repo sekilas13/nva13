@@ -31,6 +31,8 @@ node install
 
 > Mohon maaf jika ini adalah cara yang tidak efisien. Hal ini akan segera diperbaiki di masa mendatang.
 
+> :warning: **Pastikan** MongoDB sudah berjalan dengan benar.
+
 Lakukan di dua command line yang berbeda.
 
 ```sh
@@ -42,6 +44,8 @@ npm run dev
 # client
 npm start
 ```
+
+Anda bisa membukanya di http://localhost:4000
 
 ## Dibuat dengan
 
