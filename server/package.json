@@ -8,7 +8,7 @@
     "prod-dev": "NODE_ENV=production nodemon server.js"
   },
   "author": "Ezra Khairan Permana",
-  "license": "ISC",
+  "license": "GPL-3.0",
   "dependencies": {
     "accesscontrol": "^2.2.1",
     "bcrypt": "^5.0.0",
