@@ -4,7 +4,7 @@ import {
   Route,
   useRouteMatch,
 } from "react-router-dom";
-import { Main } from "./RouteSiswa";
+import { Main, Add } from "./RouteSiswa";
 import { observer } from "mobx-react";
 
 function Siswa() {
@@ -14,6 +14,7 @@ function Siswa() {
     <Router>
       <Switch>
         <Route exact path={path} component={Main} />
+        <Route path={`${path}/add`} component={Add} />
       </Switch>
     </Router>
   );

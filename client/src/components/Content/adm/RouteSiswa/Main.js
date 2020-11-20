@@ -1,9 +1,12 @@
 import { Suspense, lazy } from "react";
+import { Link, useRouteMatch } from "react-router-dom";
 import { Container, Row, Col, Button, Table } from "react-bootstrap";
 import { observer } from "mobx-react";
 const TableList = lazy(() => import("../splitting/TableList"));
 
 function Main() {
+  const { url } = useRouteMatch();
+
   return (
     <Container fluid>
       <Row className="mt-3 justify-content-center">
@@ -13,7 +16,9 @@ function Main() {
       </Row>
       <Row className="justify-content-center mt-2">
         <Col md={11}>
-          <Button className="mb-2">Tambah</Button>
+          <Button className="mb-2" as={Link} to={`${url}/add`}>
+            Tambah
+          </Button>
           <Table bordered responsive>
             <thead>
               <tr>
