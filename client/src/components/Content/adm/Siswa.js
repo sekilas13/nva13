@@ -22,6 +22,7 @@ function Siswa() {
                 <th>Nama Lengkap</th>
                 <th>Kelas</th>
                 <th>Tanggal Ditambahkan</th>
+                <th>Aksi</th>
               </tr>
             </thead>
             <tbody>

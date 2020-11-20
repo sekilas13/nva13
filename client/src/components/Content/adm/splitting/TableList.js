@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useContext } from "react";
 import { Context } from "../../../../utils/stateProvider";
 import { convMonth, updateTime } from "../../../../utils/dateConversion";
+import { Button } from "react-bootstrap";
 import { observer } from "mobx-react";
 import axios from "axios";
 
@@ -45,6 +46,10 @@ function TableList() {
                 {date.getDate()} {convMonth(date.getMonth())}{" "}
                 {date.getFullYear()} {updateTime(date.getHours())}:
                 {updateTime(date.getMinutes())}:{updateTime(date.getSeconds())}
+              </td>
+              <td>
+                <Button variant="success">Ubah</Button>
+                <Button variant="danger">Hapus</Button>
               </td>
             </tr>
           );
