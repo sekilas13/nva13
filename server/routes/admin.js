@@ -23,6 +23,6 @@ Router.use(
     })(req, res, next)
 );
 
-Router.get("/user", user);
+Router.use("/user", user);
 
 module.exports = Router;
