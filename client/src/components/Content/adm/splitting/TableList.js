@@ -1,5 +1,6 @@
-import { useEffect, useContext } from "react";
+import { Fragment, useEffect, useContext } from "react";
 import { Context } from "../../../../utils/stateProvider";
+import { convMonth, updateTime } from "../../../../utils/dateConversion";
 import { observer } from "mobx-react";
 import axios from "axios";
 
@@ -28,7 +29,28 @@ function TableList() {
     // eslint-disable-next-line
   }, []);
 
-  return <>{JSON.stringify(store.dataSiswa)}</>;
+  return (
+    <Fragment>
+      {store.dataSiswa.length > 0 &&
+        store.dataSiswa.map((data, i) => {
+          const date = new Date(data.date);
+
+          return (
+            <tr key={i}>
+              <td></td>
+              <td>{data.email}</td>
+              <td>{data.username}</td>
+              <td></td>
+              <td>
+                {date.getDate()} {convMonth(date.getMonth())}{" "}
+                {date.getFullYear()} {updateTime(date.getHours())}:
+                {updateTime(date.getMinutes())}:{updateTime(date.getSeconds())}
+              </td>
+            </tr>
+          );
+        })}
+    </Fragment>
+  );
 }
 
 export default observer(TableList);

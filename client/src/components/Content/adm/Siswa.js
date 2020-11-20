@@ -16,6 +16,7 @@ function Siswa() {
           <thead>
             <tr>
               <th>Absen</th>
+              <th>Email</th>
               <th>Nama Lengkap</th>
               <th>Kelas</th>
               <th>Tanggal Ditambahkan</th>
@@ -25,8 +26,12 @@ function Siswa() {
             <Suspense
               fallback={
                 <tr>
-                  <td colSpan={2}>Mohon Tungu</td>
-                  <td colSpan={2}>Sedang mengambil data</td>
+                  <td className="text-center" colSpan={2}>
+                    Mohon Tungu
+                  </td>
+                  <td className="text-center" colSpan={2}>
+                    Sedang mengambil data
+                  </td>
                 </tr>
               }
             >
