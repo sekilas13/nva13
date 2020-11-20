@@ -7,11 +7,11 @@ Router.use(
   (req, res, next) =>
     req.isAuthenticated()
       ? next()
-      : req.json({ err: true, message: "Anda belum login" }).status(401),
+      : res.json({ err: true, message: "Anda belum login" }).status(401),
   (req, res, next) =>
     passport.authenticate("jwt", { session: false }, (error, user) => {
       if (error) {
-        req
+        res
           .json({
             err: true,
             message: "Ada kesalahan server, mohon hubungi admin",
