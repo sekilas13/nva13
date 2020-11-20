@@ -13,11 +13,14 @@ function TableList() {
           Authorization: "Bearer " + store.token,
         },
       })
-      .then(console.log);
+      .then((res) => res.data)
+      .then(({ error, data }) => {
+        if (!error) store.addDataSiswa(data);
+      });
     // eslint-disable-next-line
   }, []);
 
-  return <></>;
+  return <>{JSON.stringify(store.dataSiswa[0])}</>;
 }
 
 export default observer(TableList);

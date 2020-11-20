@@ -7,6 +7,7 @@ const Context = createContext();
 const Provider = ({ children }) => {
   const store = useLocalObservable(() => ({
     isLogin: false,
+    dataSiswa: [],
     token: null,
     isNewLogin: false,
     username: null,
@@ -22,6 +23,7 @@ const Provider = ({ children }) => {
     setRole: (string) => (store.role = string),
     addLog: (arr) => store.log.push(arr),
     setSockStatus: (bool) => (store.socketStatus = bool),
+    addDataSiswa: (arr) => store.dataSiswa.push(arr),
     config: { sweetal },
     Logout: function () {
       this.setNewLogin(false);
