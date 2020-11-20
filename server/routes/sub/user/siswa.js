@@ -1,8 +1,8 @@
+const { User } = require("../../../models");
 const express = require("express");
-const { User } = require("../../models");
 const Router = express.Router();
 
-Router.get("/siswa", async (req, res) => {
+Router.get("/", async (req, res) => {
   try {
     const siswa = await User.find({ role: "siswa" });
 
