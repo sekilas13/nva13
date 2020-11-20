@@ -7,7 +7,7 @@ function Siswa() {
   const store = useContext(Context);
   useEffect(() => {
     axios
-      .get("/admin", {
+      .get("/admin/user/siswa", {
         headers: {
           Authorization: "Bearer " + store.token,
         },
