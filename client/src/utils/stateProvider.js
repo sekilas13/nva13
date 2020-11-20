@@ -23,7 +23,14 @@ const Provider = ({ children }) => {
     setRole: (string) => (store.role = string),
     addLog: (arr) => store.log.push(arr),
     setSockStatus: (bool) => (store.socketStatus = bool),
-    addDataSiswa: (arr) => store.dataSiswa.push(arr),
+    addDataSiswa: (arr) =>
+      arr.forEach((data) => {
+        store.dataSiswa.push(data);
+      }),
+    updateDataSiswa: (arr) => {
+      store.dataSiswa = [];
+      store.addDataSiswa(arr);
+    },
     config: { sweetal },
     Logout: function () {
       this.setNewLogin(false);
