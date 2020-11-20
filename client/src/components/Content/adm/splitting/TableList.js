@@ -54,6 +54,14 @@ function TableList() {
             </tr>
           );
         })}
+      {store.dataSiswa.length < 1 && (
+        <tr>
+          <td colSpan={6} className="text-center">
+            Belum ada data siswa. Silahkan tambah siswa dengan menggunakan
+            tombol diatas.
+          </td>
+        </tr>
+      )}
     </Fragment>
   );
 }
