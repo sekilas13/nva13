@@ -1,20 +1,9 @@
-import { useEffect, useContext } from "react";
+import { Suspense, lazy } from "react";
 import { Container, Row, Col, Table } from "react-bootstrap";
-import { Context } from "../../../utils/stateProvider";
 import { observer } from "mobx-react";
-import axios from "axios";
+const TableList = lazy(() => import("./splitting/TableList"));
 
 function Siswa() {
-  const store = useContext(Context);
-  useEffect(() => {
-    axios
-      .get("/admin/user/siswa", {
-        headers: {
-          Authorization: "Bearer " + store.token,
-        },
-      })
-      .then(console.log);
-  });
   return (
     <Container>
       <Row className="mt-3">
@@ -32,6 +21,18 @@ function Siswa() {
               <th>Tanggal Ditambahkan</th>
             </tr>
           </thead>
+          <tbody>
+            <Suspense
+              fallback={
+                <tr>
+                  <td colSpan={2}>Mohon Tungu</td>
+                  <td colSpan={2}>Sedang mengambil data</td>
+                </tr>
+              }
+            >
+              <TableList />
+            </Suspense>
+          </tbody>
         </Table>
       </Row>
     </Container>
