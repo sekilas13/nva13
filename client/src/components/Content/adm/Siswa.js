@@ -8,7 +8,7 @@ function Siswa() {
     <Container>
       <Row className="mt-3">
         <Col>
-          <h1>Data Siswa</h1>
+          <h1>Daftar Siswa</h1>
         </Col>
       </Row>
       <Row className="mt-2">
