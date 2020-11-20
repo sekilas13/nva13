@@ -29,10 +29,10 @@ function Siswa() {
               <Suspense
                 fallback={
                   <tr>
-                    <td className="text-center" colSpan={2}>
+                    <td className="text-center" colSpan={3}>
                       Mohon Tungu
                     </td>
-                    <td className="text-center" colSpan={2}>
+                    <td className="text-center" colSpan={3}>
                       Sedang mengambil data
                     </td>
                   </tr>
