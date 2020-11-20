@@ -1,5 +1,6 @@
 const passport = require("passport");
 const express = require("express");
+const user = require("./sub/user");
 const Router = express.Router();
 
 Router.use(
@@ -22,6 +23,6 @@ Router.use(
     })(req, res, next)
 );
 
-Router.get("/", (req, res) => res.json({ msg: "hello" }));
+Router.get("/user", user);
 
 module.exports = Router;
