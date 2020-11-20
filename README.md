@@ -36,12 +36,12 @@ node install
 Lakukan di dua command line yang berbeda.
 
 ```sh
-# server
+# masuk ke direktori server
 npm run dev
 ```
 
 ```sh
-# client
+# masuk ke directory client
 npm start
 ```
 
