@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import { useLocalObservable } from "mobx-react";
-import { sweetal } from "../config";
+import { sweetal, kelas } from "../config";
 
 const Context = createContext();
 
@@ -31,7 +31,7 @@ const Provider = ({ children }) => {
       store.dataSiswa = [];
       store.addDataSiswa(arr);
     },
-    config: { sweetal },
+    config: { sweetal, kelas },
     Logout: function () {
       this.setNewLogin(false);
       this.setUsername(null);

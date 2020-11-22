@@ -18,22 +18,20 @@ module.exports = [
   {
     name: "username",
     type: "input",
-    message: "Masukkan nama pengguna :",
+    message: "Masukkan nama :",
     validate: (text) => {
       if (text) {
         if (text.length < 6) {
-          console.log("\nPanjang minimal nama pengguna harus 6 karakter");
+          console.log("\nPanjang minimal nama harus 6 karakter");
           return false;
         } else {
-          const valid = /^[a-zA-Z\s\-]+$/.test(text);
+          const valid = /^[a-zA-Z ]+$/.test(text);
           if (valid) return true;
-          console.log(
-            "\nNama pengguna hanya boleh huruf, spasi, atau tanda hubung !"
-          );
+          console.log("\nNama hanya boleh huruf kecil dan kapital !");
           return false;
         }
       } else {
-        console.log("Nama pengguna harus diisi !");
+        console.log("Nama harus diisi !");
         return false;
       }
     },
@@ -64,11 +62,11 @@ module.exports = [
   {
     name: "kelas",
     type: "input",
-    message: "Masukkan kelas jika role siswa tanpa titik dan koma",
+    message: "Masukkan kelas jika role siswa tanpa titik dan koma :",
   },
   {
     name: "absen",
     type: "input",
-    message: "Masukkan absen jika role siswa",
+    message: "Masukkan absen jika role siswa :",
   },
 ];
