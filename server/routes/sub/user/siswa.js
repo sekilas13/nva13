@@ -43,4 +43,10 @@ Router.post("/", (req, res) => {
   });
 });
 
+Router.delete("/", async (req, res) => {
+  User.findByIdAndDelete(req.body._id).then(() =>
+    res.json({ error: false, message: "Siswa berhasil dihapus" }).status(200)
+  );
+});
+
 module.exports = Router;

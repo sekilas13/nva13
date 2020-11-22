@@ -3,6 +3,7 @@ import { Context } from "../../../../utils/stateProvider";
 import { convMonth, updateTime } from "../../../../utils/dateConversion";
 import { Button } from "react-bootstrap";
 import { observer } from "mobx-react";
+import Swal from "sweetalert2";
 import axios from "axios";
 
 function TableList() {
@@ -49,7 +50,31 @@ function TableList() {
               </td>
               <td>
                 <Button variant="success">Ubah</Button>
-                <Button variant="danger">Hapus</Button>
+                <Button
+                  variant="danger"
+                  onClick={() =>
+                    Swal.fire(store.config.sweetal.Hapus).then((result) => {
+                      if (result.isConfirmed) {
+                        axios
+                          .delete("/admin/user/siswa", {
+                            headers: {
+                              Authorization: "Bearer " + store.token,
+                            },
+                            data: { _id: data._id },
+                          })
+                          .then(({ data: d }) => {
+                            store.deleteOneSiswa(data._id);
+                            Swal.mixin(store.config.sweetal.Toaster).fire({
+                              icon: "success",
+                              title: d.message,
+                            });
+                          });
+                      }
+                    })
+                  }
+                >
+                  Hapus
+                </Button>
               </td>
             </tr>
           );

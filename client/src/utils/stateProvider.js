@@ -31,6 +31,10 @@ const Provider = ({ children }) => {
       store.dataSiswa = [];
       store.addDataSiswa(arr);
     },
+    deleteOneSiswa: (_id) => {
+      const index = store.dataSiswa.findIndex((x) => x._id === _id);
+      store.dataSiswa.splice(index, 1);
+    },
     config: { sweetal, kelas },
     Logout: function () {
       this.setNewLogin(false);

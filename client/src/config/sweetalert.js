@@ -24,6 +24,17 @@ const Logout = {
   confirmButtonText: "Ya, Logout saja",
 };
 
+const Hapus = {
+  title: "Apakah anda yakin?",
+  text: "Ingin menghapus siswa !",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  cancelButtonText: "Batal",
+  confirmButtonText: "Ya",
+};
+
 const Toaster = {
   toast: true,
   position: "top-end",
@@ -36,6 +47,6 @@ const Toaster = {
   },
 };
 
-const forExport = { Login, Logout, Toaster };
+const forExport = { Login, Logout, Toaster, Hapus };
 
 export default forExport;
