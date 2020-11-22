@@ -23,9 +23,9 @@ function Main() {
             <thead>
               <tr>
                 <th>Absen</th>
-                <th>Email</th>
-                <th>Nama Lengkap</th>
                 <th>Kelas</th>
+                <th>Nama Lengkap</th>
+                <th>Email</th>
                 <th>Tanggal Ditambahkan</th>
                 <th>Aksi</th>
               </tr>

@@ -38,10 +38,10 @@ function TableList() {
 
           return (
             <tr key={i}>
-              <td></td>
-              <td>{data.email}</td>
+              <td>{data.absen}</td>
+              <td>{data.kelas}</td>
               <td>{data.username}</td>
-              <td></td>
+              <td>{data.email}</td>
               <td>
                 {date.getDate()} {convMonth(date.getMonth())}{" "}
                 {date.getFullYear()} {updateTime(date.getHours())}:

@@ -15,6 +15,14 @@ const UserSchema = new mongoose.Schema({
     required: true,
     type: String,
   },
+  absen: {
+    type: Number,
+    required: false,
+  },
+  kelas: {
+    type: Number,
+    required: false,
+  },
   role: {
     type: String,
     default: "siswa",

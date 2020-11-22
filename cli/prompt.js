@@ -11,7 +11,7 @@ const User = require("./User");
 inquirer
   .prompt(pref)
   .then((data) => {
-    const { email, username, role, password } = data;
+    const { email, username, role, password, kelas, absen } = data;
     return mongoose
       .connect(process.env.MONGO_URL, {
         useNewUrlParser: true,
@@ -27,7 +27,14 @@ inquirer
 
         return User.findOne({ email }).then(async (u) => {
           if (!u) {
-            await User.create({ email, role, username, password: hash });
+            await User.create({
+              email,
+              role,
+              username,
+              password: hash,
+              kelas,
+              absen,
+            });
             return console.log("User berhasil ditambahkan");
           } else {
             return console.log("User sudah ada !");
