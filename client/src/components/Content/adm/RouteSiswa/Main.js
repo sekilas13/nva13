@@ -1,6 +1,6 @@
 import { Suspense, lazy } from "react";
 import { Link, useRouteMatch } from "react-router-dom";
-import { Container, Row, Col, Button, Table } from "react-bootstrap";
+import { Container, Row, Col, Button, Table, Spinner } from "react-bootstrap";
 import { observer } from "mobx-react";
 const TableList = lazy(() => import("../splitting/TableList"));
 
@@ -34,10 +34,13 @@ function Main() {
               <Suspense
                 fallback={
                   <tr>
-                    <td className="text-center" colSpan={3}>
-                      Mohon Tungu
+                    <td className="text-center" colSpan={2}>
+                      Mohon Tunggu
                     </td>
-                    <td className="text-center" colSpan={3}>
+                    <td className="text-center" colSpan={2}>
+                      <Spinner animation="border" variant="primary" />
+                    </td>
+                    <td className="text-center" colSpan={2}>
                       Sedang mengambil data
                     </td>
                   </tr>
