@@ -1,4 +1,5 @@
 import Main from "./Main";
 import Add from "./Add";
+import Update from "./Update";
 
-export { Main, Add };
+export { Main, Add, Update };

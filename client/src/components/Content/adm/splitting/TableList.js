@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useContext } from "react";
 import { Context } from "../../../../utils/stateProvider";
+import { useHistory } from "react-router-dom";
 import { convMonth, updateTime } from "../../../../utils/dateConversion";
 import { Button } from "react-bootstrap";
 import { observer } from "mobx-react";
@@ -8,6 +9,7 @@ import axios from "axios";
 
 function TableList() {
   const store = useContext(Context);
+  const history = useHistory();
 
   useEffect(() => {
     axios
@@ -49,7 +51,15 @@ function TableList() {
                 {updateTime(date.getMinutes())}:{updateTime(date.getSeconds())}
               </td>
               <td>
-                <Button variant="success">Ubah</Button>
+                <Button
+                  variant="success"
+                  onClick={() => {
+                    const index = store.getIndexSiswa(data._id);
+                    history.push(`/vote/siswa/update/${index}`);
+                  }}
+                >
+                  Ubah
+                </Button>
                 <Button
                   variant="danger"
                   onClick={() =>

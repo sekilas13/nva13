@@ -31,8 +31,9 @@ const Provider = ({ children }) => {
       store.dataSiswa = [];
       store.addDataSiswa(arr);
     },
+    getIndexSiswa: (_id) => store.dataSiswa.findIndex((x) => x._id === _id),
     deleteOneSiswa: (_id) => {
-      const index = store.dataSiswa.findIndex((x) => x._id === _id);
+      const index = store.getIndexSiswa(_id);
       store.dataSiswa.splice(index, 1);
     },
     config: { sweetal, kelas },
