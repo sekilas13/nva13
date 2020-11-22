@@ -182,7 +182,7 @@ function Add() {
                       className="btn-block"
                       type="submit"
                     >
-                      Login
+                      Tambah Siswa
                     </Button>
                   </Form>
                 </Col>
