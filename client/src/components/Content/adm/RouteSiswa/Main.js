@@ -16,9 +16,19 @@ function Main() {
       </Row>
       <Row className="justify-content-center mt-2">
         <Col md={11}>
-          <Button className="mb-2" as={Link} to={`${url}/add`}>
-            Tambah
-          </Button>
+          <Row className="mb-2 ml-1">
+            <Button as={Link} to={`${url}/add`}>
+              Tambah
+            </Button>
+            <Button
+              className="ml-1"
+              as={Link}
+              to={`${url}/import`}
+              variant="success"
+            >
+              Impor File CSV
+            </Button>
+          </Row>
           <Table bordered responsive>
             <thead>
               <tr>

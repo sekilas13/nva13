@@ -50,7 +50,7 @@ function TableList() {
                 {date.getFullYear()} {updateTime(date.getHours())}:
                 {updateTime(date.getMinutes())}:{updateTime(date.getSeconds())}
               </td>
-              <td>
+              <td className="text-center">
                 <Button
                   variant="success"
                   onClick={() => {
@@ -62,6 +62,7 @@ function TableList() {
                 </Button>
                 <Button
                   variant="danger"
+                  className="ml-2"
                   onClick={() =>
                     Swal.fire(store.config.sweetal.Hapus).then((result) => {
                       if (result.isConfirmed) {
