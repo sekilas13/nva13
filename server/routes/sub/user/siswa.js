@@ -19,7 +19,7 @@ Router.get("/", async (req, res) => {
 Router.post("/", (req, res) => {
   const { email, username, absen, password, kelas } = req.body;
 
-  User.findOne({ role: "siswa", email }).then(async (data) => {
+  User.findOne({ email }).then(async (data) => {
     if (data)
       return res
         .json({ error: true, message: "Email telah terdaftar" })
@@ -40,6 +40,24 @@ Router.post("/", (req, res) => {
         .json({ error: false, message: "Data berhasil ditambahkan" })
         .status(200)
     );
+  });
+});
+
+Router.put("/", (req, res) => {
+  const { _id, email, ...update } = req.body;
+  User.findOneAndUpdate(
+    { _id, email },
+    { ...update },
+    { new: true, lean: true }
+  ).then((update) => {
+    const { password, _v, ...send } = update;
+    res
+      .json({
+        error: false,
+        message: "Data siswa berhasil diperbarui",
+        data: send,
+      })
+      .status(200);
   });
 });
 

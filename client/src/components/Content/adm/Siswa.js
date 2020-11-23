@@ -9,7 +9,7 @@ function Siswa() {
     <Switch>
       <Route exact path={path} component={Main} />
       <Route path={`${path}/add`} component={Add} />
-      <Route path={`${path}/update/:index`} component={Update} />
+      <Route exact path={`${path}/update/:index`} component={Update} />
     </Switch>
   );
 }
