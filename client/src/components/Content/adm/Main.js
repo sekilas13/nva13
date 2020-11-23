@@ -12,10 +12,13 @@ function Main() {
     <Container>
       <Row className="mt-3">
         <Col md={8}>
-          <Card>
+          <Card style={{ maxHeight: "550px", minHeight: "100px" }}>
             <Card.Body>
               <h2 className="text-center">Aktivitas User</h2>
-              <ListGroup variant={store.log.length < 1 ? "flush" : "normal"}>
+              <ListGroup
+                variant={store.log.length < 1 ? "flush" : "normal"}
+                style={{ overflow: "auto", maxHeight: "450px" }}
+              >
                 {store.log.length < 1 && (
                   <ListGroup.Item>
                     Tidak ada aktivitas sejauh ini
