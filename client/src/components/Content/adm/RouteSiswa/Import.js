@@ -14,7 +14,20 @@ import { Context } from "../../../../utils/stateProvider";
 import { Error } from "../../../../style/Login";
 import Papa from "papaparse";
 import { useForm } from "react-hook-form";
+import Joi from "joi";
 import axios from "axios";
+
+const validasi = Joi.object().keys({
+  absen: Joi.number().required(),
+  username: Joi.string().required(),
+  email: Joi.string()
+    .email({ tlds: { allow: false } })
+    .required(),
+  kelas: Joi.number().required(),
+  password: Joi.string().required(),
+});
+
+const Test = Joi.array().items(validasi);
 
 function Import() {
   const store = useContext(Context);
@@ -34,7 +47,12 @@ function Import() {
       header: true,
       dynamicTyping: true,
       complete: ({ data }) => {
-        const filter = data.filter((x) => x.absen !== null);
+        const filter = data
+          .filter((x) => x.absen !== null)
+          .filter((x) => x.absen !== "");
+        const test = Test.validate(filter);
+
+        console.log(test);
 
         axios
           .post("/admin/user/siswa/import", filter, {
