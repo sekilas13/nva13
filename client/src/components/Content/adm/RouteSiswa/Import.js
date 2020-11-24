@@ -9,12 +9,12 @@ import {
   Button,
   Alert,
 } from "react-bootstrap";
-// import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 import { Context } from "../../../../utils/stateProvider";
 import { Error } from "../../../../style/Login";
 import Papa from "papaparse";
 import { useForm } from "react-hook-form";
-// import axios from "axios";
+import axios from "axios";
 
 function Import() {
   const store = useContext(Context);
@@ -23,37 +23,44 @@ function Import() {
   const setAlert = (data) => UNSAFE_setAlert({ ...alert, ...data });
   const [loading, setLoading] = useState(false);
   const history = useHistory();
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors, setValue } = useForm();
+
+  const reset = () => setValue("csv", "");
 
   const onSubmit = (data) => {
+    setLoading(true);
     const csv = data.csv[0];
     Papa.parse(csv, {
       header: true,
-      complete: (data) => console.log(data),
+      complete: ({ data }) => {
+        axios
+          .post(
+            "/admin/user/siswa/import",
+            data.filter((x) => x.absen !== ""),
+            {
+              headers: {
+                Authorization: "Bearer " + store.token,
+              },
+            }
+          )
+          .then((data) => data.data)
+          .then((r) => {
+            setLoading(false);
+            if (!r.error) {
+              reset();
+              const Toast = Swal.mixin(store.config.sweetal.Toaster);
+              Toast.fire({
+                icon: "success",
+                title: "Siswa berhasil ditambahkan",
+              });
+              history.push("/vote/siswa");
+            } else {
+              reset();
+              setAlert({ error: true, message: r.message });
+            }
+          });
+      },
     });
-    // setLoading(true);
-    // axios
-    //   .post("/admin/user/siswa", data, {
-    //     headers: {
-    //       Authorization: "Bearer " + store.token,
-    //     },
-    //   })
-    //   .then((data) => data.data)
-    //   .then((r) => {
-    //     setLoading(false);
-    //     if (!r.error) {
-    //       reset();
-    //       const Toast = Swal.mixin(store.config.sweetal.Toaster);
-    //       Toast.fire({
-    //         icon: "success",
-    //         title: "Siswa berhasil ditambahkan",
-    //       });
-    //       history.push("/vote/siswa");
-    //     } else {
-    //       reset();
-    //       setAlert({ error: true, message: r.message });
-    //     }
-    //   });
   };
 
   return (
@@ -90,7 +97,9 @@ function Import() {
                         accept=".csv"
                         custom
                       />
-                      {errors.csv && <Error msg="Bidang ini perlu diisi !" />}
+                      {errors.csv && (
+                        <Error msg="Pilih file terlebih dahulu !" />
+                      )}
                     </Form.Group>
                     <Button
                       variant="warning"

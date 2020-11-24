@@ -67,4 +67,9 @@ Router.delete("/", async (req, res) => {
   );
 });
 
+Router.post("/import", (req, res) => {
+  console.log(req.body);
+  res.end();
+});
+
 module.exports = Router;
