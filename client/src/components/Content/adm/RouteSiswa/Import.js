@@ -32,17 +32,16 @@ function Import() {
     const csv = data.csv[0];
     Papa.parse(csv, {
       header: true,
+      dynamicTyping: true,
       complete: ({ data }) => {
+        const filter = data.filter((x) => x.absen !== null);
+
         axios
-          .post(
-            "/admin/user/siswa/import",
-            data.filter((x) => x.absen !== ""),
-            {
-              headers: {
-                Authorization: "Bearer " + store.token,
-              },
-            }
-          )
+          .post("/admin/user/siswa/import", filter, {
+            headers: {
+              Authorization: "Bearer " + store.token,
+            },
+          })
           .then((data) => data.data)
           .then((r) => {
             setLoading(false);
