@@ -8,7 +8,8 @@ const path = require("path");
 
 const app = express();
 
-const { fullUrl } = require("./utils");
+const { main } = require("./routes");
+
 const nm_dir = path.join(__dirname, "node_modules");
 const pub_dir = path.join(__dirname, "public");
 const PORT = process.env.PORT || 3000;
@@ -24,12 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(favicon(path.join(pub_dir, "favicon.ico")));
 app.use("/bs", express.static(path.join(nm_dir, "bootstrap/dist")));
 
-app.get("/", (req, res) =>
-  res.render("pages/landingPage", {
-    cannonical: fullUrl(req),
-    title: "Pilih Paslon Mu | NVA13",
-  })
-);
+app.get("/", main);
 
 const server = http.createServer(app);
 
