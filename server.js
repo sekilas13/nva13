@@ -24,6 +24,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(favicon(path.join(pub_dir, "favicon.ico")));
 app.use("/bs", express.static(path.join(nm_dir, "bootstrap/dist")));
+app.use("/jq", express.static(path.join(nm_dir, "jquery/dist")));
 
 app.get("/", main);
 
