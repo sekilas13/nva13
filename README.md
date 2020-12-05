@@ -52,6 +52,5 @@ Anda bisa membukanya di http://localhost:4000
 - [Node.js](https://nodejs.org/en/) - Software untuk backend
 - [MongoDB](https://www.mongodb.com/) - Database penyimpanan data
 - [ExpressJS](https://expressjs.com/) - Web framework untuk backend
-- [React.js](https://reactjs.org/) - Web framework untuk Frontend
 - [Bootstrap](https://getbootstrap.com/) - Web framework frontend untuk memperindah tampilan
 - [Socket.io](https://socket.io/) - Library Real Time Websocket
