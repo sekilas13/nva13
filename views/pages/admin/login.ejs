@@ -3,6 +3,7 @@
   <head>
     <%- include('../../partial/head.ejs', { title : `${title}`, cannonical:
     `${cannonical}` }) %>
+    <link rel="stylesheet" href="/css/login.css" />
   </head>
   <body>
     <div class="container">
@@ -17,13 +18,19 @@
                     type="email"
                     class="form-control"
                     id="email"
-                    placeholder="joe@example.com"
+                    placeholder="Masukan email"
                   />
                 </div>
                 <div class="form-group">
                   <label for="password">Kata Sandi</label>
-                  <input type="password" class="form-control" id="password" />
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    placeholder="Masukan kata sandi"
+                  />
                 </div>
+                <hr />
                 <button class="btn btn-primary btn-block" type="submit">
                   Login
                 </button>
