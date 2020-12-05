@@ -2,6 +2,7 @@ const bodyParser = require("body-parser");
 const favicon = require("serve-favicon");
 const socketIO = require("socket.io");
 const mongoose = require("mongoose");
+const passport = require("passport");
 const noCache = require("nocache");
 const express = require("express");
 const http = require("http");
@@ -11,6 +12,7 @@ const app = express();
 require("dotenv").config();
 
 const { main, admin } = require("./routes");
+const Local = require("./passport/local");
 
 const nm_dir = path.join(__dirname, "node_modules");
 const pub_dir = path.join(__dirname, "public");
@@ -28,6 +30,11 @@ mongoose
     console.log(`Error : ${err}`);
     process.exit(22);
   });
+
+Local(passport);
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
