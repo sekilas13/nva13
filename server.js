@@ -1,3 +1,4 @@
+const session = require("express-session");
 const bodyParser = require("body-parser");
 const favicon = require("serve-favicon");
 const socketIO = require("socket.io");
@@ -35,6 +36,14 @@ Local(passport);
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
