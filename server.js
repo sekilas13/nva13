@@ -8,7 +8,7 @@ const path = require("path");
 
 const app = express();
 
-const { main } = require("./routes");
+const { main, admin } = require("./routes");
 
 const nm_dir = path.join(__dirname, "node_modules");
 const pub_dir = path.join(__dirname, "public");
@@ -28,6 +28,7 @@ app.use("/jq", express.static(path.join(nm_dir, "jquery/dist")));
 app.use("/validator", express.static(path.join(nm_dir, "validate.js")));
 
 app.get("/", main);
+app.use("/admin", admin);
 
 const server = http.createServer(app);
 
