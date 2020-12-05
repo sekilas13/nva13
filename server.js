@@ -1,18 +1,33 @@
 const bodyParser = require("body-parser");
 const favicon = require("serve-favicon");
 const socketIO = require("socket.io");
+const mongoose = require("mongoose");
 const noCache = require("nocache");
 const express = require("express");
 const http = require("http");
 const path = require("path");
 
 const app = express();
+require("dotenv").config();
 
 const { main, admin } = require("./routes");
 
 const nm_dir = path.join(__dirname, "node_modules");
 const pub_dir = path.join(__dirname, "public");
 const PORT = process.env.PORT || 3000;
+
+mongoose
+  .connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+  })
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => {
+    console.log(`Error : ${err}`);
+    process.exit(22);
+  });
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");

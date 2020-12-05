@@ -44,7 +44,9 @@ npm install --save-dev
 
 ### Menjalankan Aplikasinya
 
-Mempunyai dua opsi satu untuk development dan satu lagi untuk production.
+Pertama-tama, copy file `env.example` menjadi `.env` dan isikan value yang sesuai.
+
+Script npm yang ada mempunyai dua opsi, satu untuk development dan satu lagi untuk production.
 
 ```sh
 # untuk development
