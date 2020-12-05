@@ -36,7 +36,10 @@ git clone git@github.com:sekilas13/nva13.git
 Anda ke root directory project dan menjalankan
 
 ```sh
-node install
+npm install
+
+# dev dependencies
+npm install --save-dev
 ```
 
 ### Menjalankan Aplikasinya
