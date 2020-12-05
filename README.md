@@ -19,6 +19,18 @@ Anda butuh
 
 ## Pemakaian
 
+### Cloning Dari Github
+
+Jalankan perintah ini Command Line.
+
+```sh
+# https
+git clone https://github.com/sekilas13/nva13.git
+
+# SSH
+git clone git@github.com:sekilas13/nva13.git
+```
+
 ### Menginstall package
 
 Anda ke root directory project dan menjalankan
@@ -29,19 +41,15 @@ node install
 
 ### Menjalankan Aplikasinya
 
-> Mohon maaf jika ini adalah cara yang tidak efisien. Hal ini akan segera diperbaiki di masa mendatang.
-
-> :warning: **Pastikan** MongoDB sudah berjalan dengan benar.
-
-Lakukan di dua command line yang berbeda.
+Mempunyai dua opsi satu untuk development dan satu lagi untuk production.
 
 ```sh
-# masuk ke direktori server
-npm run dev
+# untuk development
+npm dev
 ```
 
 ```sh
-# masuk ke directory client
+# untuk production
 npm start
 ```
 
