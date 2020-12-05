@@ -5,7 +5,34 @@
     `${cannonical}` }) %>
   </head>
   <body>
-    <div class="container"></div>
+    <div class="container">
+      <div class="row justify-content-center mt-4">
+        <div class="col col-md-5">
+          <div class="card">
+            <div class="card-body">
+              <form action="POST">
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    placeholder="joe@example.com"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="password">Kata Sandi</label>
+                  <input type="password" class="form-control" id="password" />
+                </div>
+                <button class="btn btn-primary btn-block" type="submit">
+                  Login
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <%- include('../../partial/BSreq.ejs') %>
   </body>
