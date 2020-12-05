@@ -1,0 +1,20 @@
+{
+  "name": "nva13",
+  "version": "1.0.0",
+  "description": "Aplikasi voting menggunakan node.js",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "prod-dev": "NODE_ENV=production nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sekilas13/nva13.git"
+  },
+  "author": "Ezra Khairan Permana",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/sekilas13/nva13/issues"
+  },
+  "homepage": "https://github.com/sekilas13/nva13#readme"
+}
