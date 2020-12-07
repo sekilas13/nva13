@@ -8,7 +8,7 @@
   <body>
     <div class="container">
       <div class="row justify-content-center mt-4">
-        <div class="col col-md-5">
+        <div class="col col-md-6">
           <div class="card">
             <div class="card-body">
               <form method="POST">
@@ -17,23 +17,46 @@
                   <input
                     type="email"
                     class="form-control"
-                    id="email"
+                    id="nama"
                     placeholder="Masukan email"
                   />
                 </div>
                 <div class="form-group">
-                  <label for="password">Kata Sandi</label>
+                  <label for="email">Nama Lengkap</label>
                   <input
-                    type="password"
+                    type="input"
                     class="form-control"
-                    id="password"
-                    placeholder="Masukan kata sandi"
+                    id="nama"
+                    placeholder="Masukan nama lengkap"
                   />
                 </div>
+                <div class="form-row">
+                  <div class="col">
+                    <label for="password">Kata Sandi</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="password"
+                      placeholder="Masukan kata sandi"
+                    />
+                  </div>
+                  <div class="col">
+                    <label for="passwordconf">Konfirmasi Kata Sandi</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="passwordconf"
+                      placeholder="Konfirmasi kata sandi"
+                    />
+                  </div>
+                </div>
                 <hr />
-                <button class="btn btn-primary btn-block" type="submit">
-                  Login
+                <button class="btn btn-success btn-block" type="submit">
+                  Daftarkan Akun
                 </button>
+                <a class="btn btn-primary btn-block mt-2" href="/admin/login">
+                  Login
+                </a>
               </form>
             </div>
           </div>
