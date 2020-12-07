@@ -1,4 +1,5 @@
 const GridFsStorage = require("multer-gridfs-storage");
+const methodOverride = require("method-override");
 const session = require("express-session");
 const compression = require("compression");
 const bodyParser = require("body-parser");
@@ -85,6 +86,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 Local(passport);
+
+app.use(methodOverride("_method"));
 
 app.get("/", main);
 app.use("/admin", admin);

@@ -1,13 +1,14 @@
-const { fullUrl } = require("../utils");
-const { User } = require("../models");
+const { fullUrl } = require("../../utils");
+const { User } = require("../../models");
 const passport = require("passport");
 const express = require("express");
+const paslon = require("./paslon");
 const bcrypt = require("bcrypt");
 const Router = express.Router();
 const {
   checkAuthenticated,
   checkNotAuthenticated,
-} = require("../utils/AuthCheker");
+} = require("../../utils/AuthCheker");
 
 Router.get("/", checkAuthenticated, (req, res) =>
   res.render("pages/admin/dashboard", {
@@ -59,5 +60,7 @@ Router.post("/daftar", checkNotAuthenticated, (req, res) => {
     }
   });
 });
+
+Router.use("/paslon", checkAuthenticated, paslon);
 
 module.exports = Router;
