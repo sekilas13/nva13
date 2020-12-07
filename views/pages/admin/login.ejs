@@ -27,7 +27,7 @@
                 </button>
               </div>
               <% } %>
-              <form method="POST" action="/admin/login">
+              <form method="POST" action="/admin/login" id="form-login">
                 <div class="form-group">
                   <label for="email">Email</label>
                   <input
@@ -62,8 +62,7 @@
       </div>
     </div>
 
-    <%- include('../../partial/BSreq.ejs') %>
-    <script src="/validator/jquery.validate.min.js"></script>
+    <%- include('../../partial/BSreqValid.ejs') %>
     <script src="/js/admin/login.js"></script>
   </body>
 </html>

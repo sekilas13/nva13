@@ -35,3 +35,7 @@ hr {
     rgba(0, 0, 0, 0)
   );
 }
+
+label.error {
+  font-size: 0.86rem;
+}
