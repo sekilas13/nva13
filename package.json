@@ -4,7 +4,7 @@
   "description": "Aplikasi voting menggunakan node.js",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js",
+    "dev": "nodemon server.js --ignore 'public/'",
     "prod-dev": "NODE_ENV=production nodemon server.js",
     "start": "NODE_ENV=production node server.js"
   },
