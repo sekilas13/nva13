@@ -34,12 +34,7 @@ mongoose
     process.exit(22);
   });
 
-Local(passport);
-
 app.use(compression());
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 app.use(
   session({
@@ -62,6 +57,11 @@ app.use(favicon(path.join(pub_dir, "favicon.ico")));
 app.use("/bs", express.static(path.join(nm_dir, "bootstrap")));
 app.use("/jq", express.static(path.join(nm_dir, "jquery")));
 app.use("/validator", express.static(path.join(nm_dir, "jquery-validation")));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+Local(passport);
 
 app.get("/", main);
 app.use("/admin", admin);

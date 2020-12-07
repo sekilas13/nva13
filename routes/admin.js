@@ -1,6 +1,8 @@
 const { fullUrl } = require("../utils");
+const { User } = require("../models");
 const passport = require("passport");
 const express = require("express");
+const bcrypt = require("bcrypt");
 const Router = express.Router();
 
 Router.get("/", checkAuthenticated, (req, res) => res.send("Admin"));
@@ -27,6 +29,27 @@ Router.post(
     failureFlash: true,
   })
 );
+Router.post("/daftar", checkNotAuthenticated, (req, res) => {
+  const { email, username, password } = req.body;
+
+  User.findOne({ email }).then(async (u) => {
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(password, salt);
+
+    if (!u) {
+      await User.create({
+        email,
+        username,
+        password: hash,
+      });
+      req.flash("success", "Admin baru berhasil ditambahkan, silahkan login");
+      res.redirect("/admin/login");
+    } else {
+      req.flash("error", "Akun sudah terdaftar !");
+      res.redirect("/admin/daftar");
+    }
+  });
+});
 
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {

@@ -3,7 +3,7 @@
   <head>
     <%- include('../../partial/head.ejs', { title : `${title}`, cannonical:
     `${cannonical}` }) %>
-    <link rel="stylesheet" href="/css/login.css" />
+    <link rel="stylesheet" href="/css/form.css" />
   </head>
   <body>
     <div class="container">
@@ -11,23 +11,27 @@
         <div class="col col-md-6">
           <div class="card">
             <div class="card-body">
-              <form method="POST">
+              <form method="POST" id="form-daftar">
                 <div class="form-group">
                   <label for="email">Email</label>
                   <input
                     type="email"
                     class="form-control"
-                    id="nama"
+                    id="email"
+                    name="email"
                     placeholder="Masukan email"
+                    required
                   />
                 </div>
                 <div class="form-group">
-                  <label for="email">Nama Lengkap</label>
+                  <label for="nama">Nama Lengkap</label>
                   <input
                     type="input"
                     class="form-control"
                     id="nama"
+                    name="username"
                     placeholder="Masukan nama lengkap"
+                    required
                   />
                 </div>
                 <div class="form-row">
@@ -37,7 +41,9 @@
                       type="password"
                       class="form-control"
                       id="password"
+                      name="password"
                       placeholder="Masukan kata sandi"
+                      required
                     />
                   </div>
                   <div class="col">
@@ -46,7 +52,9 @@
                       type="password"
                       class="form-control"
                       id="passwordconf"
+                      name="passwordconf"
                       placeholder="Konfirmasi kata sandi"
+                      required
                     />
                   </div>
                 </div>
@@ -64,6 +72,7 @@
       </div>
     </div>
 
-    <%- include('../../partial/BSreq.ejs') %>
+    <%- include('../../partial/BSreqValid.ejs') %>
+    <script src="/js/admin/daftar.js"></script>
   </body>
 </html>
