@@ -56,7 +56,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(favicon(path.join(pub_dir, "favicon.ico")));
 app.use("/bs", express.static(path.join(nm_dir, "bootstrap/dist")));
 app.use("/jq", express.static(path.join(nm_dir, "jquery/dist")));
-app.use("/validator", express.static(path.join(nm_dir, "validate.js")));
+app.use(
+  "/validator",
+  express.static(path.join(nm_dir, "jquery-validation/dist"))
+);
 
 app.get("/", main);
 app.use("/admin", admin);
