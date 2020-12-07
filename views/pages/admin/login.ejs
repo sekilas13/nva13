@@ -11,6 +11,22 @@
         <div class="col col-md-5">
           <div class="card">
             <div class="card-body">
+              <% if (messages.error) { %>
+              <div
+                class="alert alert-danger alert-dismissible fade show"
+                role="alert"
+              >
+                <strong>Error !</strong> <%= messages.error %>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="alert"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <% } %>
               <form method="POST" action="/admin/login">
                 <div class="form-group">
                   <label for="email">Email</label>

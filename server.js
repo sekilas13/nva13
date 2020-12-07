@@ -2,6 +2,7 @@ const session = require("express-session");
 const compression = require("compression");
 const bodyParser = require("body-parser");
 const favicon = require("serve-favicon");
+const flash = require("express-flash");
 const socketIO = require("socket.io");
 const mongoose = require("mongoose");
 const passport = require("passport");
@@ -54,6 +55,7 @@ app.set("view engine", "ejs");
 app.use(express.static(pub_dir));
 
 app.use(noCache());
+app.use(flash());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(favicon(path.join(pub_dir, "favicon.ico")));

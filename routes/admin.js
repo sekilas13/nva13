@@ -1,8 +1,10 @@
-const express = require("express");
 const { fullUrl } = require("../utils");
+const passport = require("passport");
+const express = require("express");
 const Router = express.Router();
 
 Router.get("/", checkAuthenticated, (req, res) => res.send("Admin"));
+
 Router.get("/login", checkNotAuthenticated, (req, res) =>
   res.render("pages/admin/login", {
     title: "Login sebagai Admin | NVA13",
@@ -15,10 +17,14 @@ Router.get("/daftar", checkNotAuthenticated, (req, res) =>
     cannonical: fullUrl(req),
   })
 );
-Router.get("/login", checkNotAuthenticated, (req, res) =>
-  res.render("pages/admin/login", {
-    title: "Login sebagai Admin | NVA13",
-    cannonical: fullUrl(req),
+
+Router.post(
+  "/login",
+  checkNotAuthenticated,
+  passport.authenticate("local", {
+    successRedirect: "/admin",
+    failureRedirect: "/admin/login",
+    failureFlash: true,
   })
 );
 

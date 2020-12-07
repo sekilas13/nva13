@@ -15,31 +15,32 @@ module.exports = (passport) => {
   });
 
   passport.use(
-    new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
-      User.findOne({ email })
-        .then((user) => {
-          if (!user) {
-            return done(null, false, {
-              message: "Akun tidak terdaftar !",
-              type: "ACC_404",
-            });
-          } else {
-            bcrypt.compare(password, user.password, (err, isMatch) => {
-              if (err) throw err;
-              if (isMatch) {
-                return done(null, user);
-              } else {
-                return done(null, false, {
-                  message: "Kata sandi salah !",
-                  type: "PASS_ERR",
-                });
-              }
-            });
-          }
-        })
-        .catch((err) => {
-          return done(null, false, { message: err });
-        });
-    })
+    new LocalStrategy(
+      { usernameField: "email", passwordField: "pw" },
+      (email, password, done) => {
+        User.findOne({ email })
+          .then((user) => {
+            if (!user) {
+              return done(null, false, {
+                message: "Akun tidak terdaftar !",
+              });
+            } else {
+              bcrypt.compare(password, user.password, (err, isMatch) => {
+                if (err) throw err;
+                if (isMatch) {
+                  return done(null, user);
+                } else {
+                  return done(null, false, {
+                    message: "Kata sandi salah !",
+                  });
+                }
+              });
+            }
+          })
+          .catch((err) => {
+            return done(null, false, { message: err });
+          });
+      }
+    )
   );
 };
