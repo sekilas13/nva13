@@ -9,6 +9,18 @@ Router.get("/login", checkNotAuthenticated, (req, res) =>
     cannonical: fullUrl(req),
   })
 );
+Router.get("/daftar", checkNotAuthenticated, (req, res) =>
+  res.render("pages/admin/daftar", {
+    title: "Daftarkan Akun Admin | NVA13",
+    cannonical: fullUrl(req),
+  })
+);
+Router.get("/login", checkNotAuthenticated, (req, res) =>
+  res.render("pages/admin/login", {
+    title: "Login sebagai Admin | NVA13",
+    cannonical: fullUrl(req),
+  })
+);
 
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
