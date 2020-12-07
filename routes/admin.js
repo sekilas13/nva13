@@ -4,8 +4,17 @@ const passport = require("passport");
 const express = require("express");
 const bcrypt = require("bcrypt");
 const Router = express.Router();
+const {
+  checkAuthenticated,
+  checkNotAuthenticated,
+} = require("../utils/AuthCheker");
 
-Router.get("/", checkAuthenticated, (req, res) => res.send("Admin"));
+Router.get("/", checkAuthenticated, (req, res) =>
+  res.render("pages/admin/dashboard", {
+    title: "Dashboard | NVA13",
+    cannonical: fullUrl(req),
+  })
+);
 
 Router.get("/login", checkNotAuthenticated, (req, res) =>
   res.render("pages/admin/login", {
@@ -50,20 +59,5 @@ Router.post("/daftar", checkNotAuthenticated, (req, res) => {
     }
   });
 });
-
-function checkAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-
-  res.redirect("/admin/login");
-}
-
-function checkNotAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return res.redirect("/admin");
-  }
-  next();
-}
 
 module.exports = Router;
