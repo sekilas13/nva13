@@ -1,4 +1,5 @@
 const session = require("express-session");
+const compression = require("compression");
 const bodyParser = require("body-parser");
 const favicon = require("serve-favicon");
 const socketIO = require("socket.io");
@@ -33,6 +34,8 @@ mongoose
   });
 
 Local(passport);
+
+app.use(compression());
 
 app.use(passport.initialize());
 app.use(passport.session());
