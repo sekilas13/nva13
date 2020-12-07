@@ -11,13 +11,14 @@
         <div class="col col-md-5">
           <div class="card">
             <div class="card-body">
-              <form method="POST">
+              <form method="POST" action="/admin/login">
                 <div class="form-group">
                   <label for="email">Email</label>
                   <input
                     type="email"
                     class="form-control"
                     id="email"
+                    name="email"
                     placeholder="Masukan email"
                   />
                 </div>
@@ -27,6 +28,7 @@
                     type="password"
                     class="form-control"
                     id="password"
+                    name="pw"
                     placeholder="Masukan kata sandi"
                   />
                 </div>
