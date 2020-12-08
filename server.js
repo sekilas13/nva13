@@ -14,6 +14,7 @@ const multer = require("multer");
 const crypto = require("crypto");
 const http = require("http");
 const path = require("path");
+const MongoStore = require("connect-mongo")(session);
 
 const app = express();
 require("dotenv").config();
@@ -65,6 +66,7 @@ app.use(
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
   })
 );
 

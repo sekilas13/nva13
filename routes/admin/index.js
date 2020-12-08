@@ -61,6 +61,11 @@ Router.post("/daftar", checkNotAuthenticated, (req, res) => {
   });
 });
 
+Router.delete("/logout", (req, res) => {
+  req.logOut();
+  res.redirect("/admin/login");
+});
+
 Router.use("/paslon", checkAuthenticated, paslon);
 
 module.exports = Router;
