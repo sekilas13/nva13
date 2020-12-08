@@ -44,7 +44,6 @@ Router.get("/ubah/:_id", (req, res) => {
 
   if (ObjectID.isValid(_id) === true) {
     Paslon.findById(_id).then((data) => {
-      console.log(data);
       if (data) {
         res.render("pages/admin/paslon/update", {
           title: "Perbarui Data Paslon | NVA13",
