@@ -3,6 +3,7 @@
   <head>
     <%- include('../../../partial/head.ejs', { title : `${title}`, cannonical:
     `${cannonical}` }) %>
+    <link rel="stylesheet" href="/css/paslon-form.css" />
   </head>
   <body>
     <%- include('../../../partial/Navbar/Paslon.ejs') %>
@@ -35,7 +36,7 @@
               <form
                 action="/admin/paslon/ubah/<%= data._id %>"
                 method="POST"
-                enctype="multipart/form-data"
+                id="paslon-update"
               >
                 <div class="form-group">
                   <label for="Ketua">Nama Ketua</label>
@@ -49,18 +50,18 @@
                   />
                 </div>
                 <div class="form-group">
-                  <label for="Ketua">Nama Wakil Ketua</label>
+                  <label for="Waketu">Nama Wakil Ketua</label>
                   <input
                     type="input"
                     class="form-control"
-                    id="Ketua"
+                    id="Waketu"
                     name="nameWaketu"
                     value="<%= data.wakil %>"
                     placeholder="Masukan Nama Wakil Ketua"
                   />
                 </div>
                 <div class="form-group">
-                  <button class="btn btn-success btn-block">
+                  <button class="btn btn-success btn-block" type="submit">
                     Perbarui Data
                   </button>
                 </div>

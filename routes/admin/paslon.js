@@ -82,4 +82,35 @@ Router.post("/tambah", upload.single("gambarPaslon"), (req, res) => {
   });
 });
 
+Router.post("/ubah/:_id", (req, res) => {
+  const { _id } = req.params;
+
+  if (ObjectID.isValid(_id) === true) {
+    Paslon.findById(_id).then((data) => {
+      if (data) {
+        Paslon.findById(data._id)
+          .lean()
+          .exec()
+          .then((realData) => {
+            const request = {
+              ketua: req.body.nameKetua,
+              wakil: req.body.nameWaketu,
+            };
+            const filter = { ketua: realData.ketua, wakil: realData.wakil };
+
+            if (JSON.stringify(filter) !== JSON.stringify(request)) {
+            } else {
+              req.flash("error", "Data yang diubah tidak boleh sama !");
+              res.redirect(`/admin/paslon/ubah/${_id}`);
+            }
+          });
+      } else {
+        res.redirect("/admin/paslon");
+      }
+    });
+  } else {
+    res.redirect("/admin/paslon");
+  }
+});
+
 module.exports = Router;
