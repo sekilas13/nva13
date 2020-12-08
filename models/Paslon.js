@@ -1,8 +1,14 @@
 const mongoose = require("mongoose");
 
 const PaslonScheme = mongoose.Schema({
-  pasanganCalon: {
+  ketua: {
     required: true,
+    match: /^[a-zA-Z\s\-]+$/,
+    type: String,
+  },
+  wakil: {
+    required: true,
+    match: /^[a-zA-Z\s\-]+$/,
     type: String,
   },
   img: {

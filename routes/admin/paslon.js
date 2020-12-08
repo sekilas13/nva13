@@ -13,4 +13,11 @@ Router.get("/", (req, res) =>
   )
 );
 
+Router.get("/tambah", (req, res) =>
+  res.render("pages/admin/paslon/add", {
+    title: "Tambah Paslon | NVA13",
+    cannonical: fullUrl(req),
+  })
+);
+
 module.exports = Router;

@@ -21,7 +21,8 @@
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Nama Paslon</th>
+                <th scope="col">Nama Ketua</th>
+                <th scope="col">Nama Wakil Ketua</th>
                 <th scope="col">Gambar</th>
                 <th scope="col">Aksi</th>
               </tr>
@@ -29,10 +30,8 @@
             <tbody>
               <% if(data.length < 1) { %>
               <tr class="text-center">
-                <td rowspan="2" colspan="2">Tidak ada data paslon</td>
-                <td rowspan="2" colspan="2">
-                  Silahkan tambah dengan tombol diatas
-                </td>
+                <td colspan="3">Tidak ada data paslon</td>
+                <td colspan="3">Silahkan tambah dengan tombol diatas</td>
               </tr>
               <% } %>
               <!-- <tr>
