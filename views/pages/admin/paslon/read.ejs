@@ -14,6 +14,9 @@
       </div>
       <div class="row mt-2">
         <div class="col">
+          <a href="/admin/paslon/tambah" class="btn btn-primary mb-2"
+            >Tambah Paslon Baru</a
+          >
           <table class="table table-bordered">
             <thead>
               <tr>
@@ -24,12 +27,14 @@
               </tr>
             </thead>
             <tbody>
+              <% if(data.length < 1) { %>
               <tr class="text-center">
                 <td rowspan="2" colspan="2">Tidak ada data paslon</td>
                 <td rowspan="2" colspan="2">
                   Silahkan tambah dengan tombol diatas
                 </td>
               </tr>
+              <% } %>
               <!-- <tr>
                 <th scope="row">1</th>
                 <td>Mark</td>
