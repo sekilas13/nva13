@@ -91,7 +91,7 @@ Router.post("/ubah/:_id", (req, res) => {
         Paslon.findById(data._id)
           .lean()
           .exec()
-          .then((realData) => {
+          .then(async (realData) => {
             const request = {
               ketua: req.body.nameKetua,
               wakil: req.body.nameWaketu,
@@ -99,6 +99,10 @@ Router.post("/ubah/:_id", (req, res) => {
             const filter = { ketua: realData.ketua, wakil: realData.wakil };
 
             if (JSON.stringify(filter) !== JSON.stringify(request)) {
+              await Paslon.findByIdAndUpdate(_id, request);
+
+              req.flash("success", "Paslon berhasil diubah !");
+              return res.redirect("/admin/paslon");
             } else {
               req.flash("error", "Data yang diubah tidak boleh sama !");
               res.redirect(`/admin/paslon/ubah/${_id}`);
