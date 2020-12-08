@@ -9,7 +9,7 @@
     <div class="container mt-3">
       <div class="row">
         <div class="col">
-          <h1 class="text-center">Tambah Paslon Baru</h1>
+          <h1 class="text-center">Update Data Paslon</h1>
         </div>
       </div>
       <div class="row justify-content-center">
@@ -33,7 +33,7 @@
               </div>
               <% } %>
               <form
-                action="/admin/paslon/tambah"
+                action="/admin/paslon/update/<%= data._id %>"
                 method="POST"
                 enctype="multipart/form-data"
               >
@@ -44,6 +44,7 @@
                     class="form-control"
                     name="nameKetua"
                     id="Ketua"
+                    value="<%= data.ketua %>"
                     placeholder="Masukan Nama Ketua"
                   />
                 </div>
@@ -54,27 +55,13 @@
                     class="form-control"
                     id="Ketua"
                     name="nameWaketu"
+                    value="<%= data.wakil %>"
                     placeholder="Masukan Nama Wakil Ketua"
                   />
                 </div>
                 <div class="form-group">
-                  <label for="gambarPaslon">Gambar Paslon</label>
-                  <div class="custom-file">
-                    <input
-                      type="file"
-                      class="custom-file-input"
-                      id="gambarPaslon"
-                      name="gambarPaslon"
-                      accept="image/*"
-                    />
-                    <label class="custom-file-label" for="gambarPaslon"
-                      >Pilih gambar</label
-                    >
-                  </div>
-                </div>
-                <div class="form-group">
-                  <button class="btn btn-primary btn-block">
-                    Tambah Paslon
+                  <button class="btn btn-success btn-block">
+                    Perbarui Data
                   </button>
                 </div>
               </form>
@@ -85,6 +72,6 @@
     </div>
 
     <%- include('../../../partial/BSreqValid.ejs') %>
-    <script src="/js/admin/paslon/add.js"></script>
+    <script src="/js/admin/paslon/update.js"></script>
   </body>
 </html>

@@ -17,6 +17,22 @@
           <a href="/admin/paslon/tambah" class="btn btn-primary mb-2"
             >Tambah Paslon Baru</a
           >
+          <% if (messages.success) { %>
+          <div
+            class="alert alert-success alert-dismissible fade show"
+            role="alert"
+          >
+            <%= messages.success%>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="alert"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <% } %>
           <table class="table table-bordered">
             <thead>
               <tr>
@@ -33,13 +49,28 @@
                 <td colspan="3">Tidak ada data paslon</td>
                 <td colspan="3">Silahkan tambah dengan tombol diatas</td>
               </tr>
-              <% } %>
-              <!-- <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr> -->
+              <% } else { %> <% data.forEach((paslon, index) => { %>
+              <tr>
+                <th scope="row"><%= index + 1 %></th>
+                <td><%= paslon.ketua %></td>
+                <td><%= paslon.wakil %></td>
+                <td class="text-center">
+                  <img
+                    class="img img-thumbnail"
+                    style="width: 55%"
+                    src="data:<%=paslon.img.contentType%>;base64,<%=paslon.img.data.toString('base64')%>"
+                  />
+                </td>
+                <td>
+                  <a
+                    href="/admin/paslon/ubah/<%= paslon._id %>"
+                    class="btn btn-success"
+                    >Ubah</a
+                  >
+                  <button class="btn btn-danger">Hapus</button>
+                </td>
+              </tr>
+              <% }) %> <% } %>
             </tbody>
           </table>
         </div>

@@ -1,3 +1,4 @@
+const ObjectID = require("mongoose").Types.ObjectId;
 const { Paslon } = require("../../models");
 const { fullUrl } = require("../../utils");
 const express = require("express");
@@ -37,9 +38,31 @@ Router.get("/tambah", (req, res) =>
   })
 );
 
+Router.get("/ubah", (req, res) => res.redirect("/admin/paslon"));
+Router.get("/ubah/:_id", (req, res) => {
+  const { _id } = req.params;
+
+  if (ObjectID.isValid(_id) === true) {
+    Paslon.findById(_id).then((data) => {
+      console.log(data);
+      if (data) {
+        res.render("pages/admin/paslon/update", {
+          title: "Perbarui Data Paslon | NVA13",
+          cannonical: fullUrl(req),
+          data,
+        });
+      } else {
+        res.redirect("/admin/paslon");
+      }
+    });
+  } else {
+    res.redirect("/admin/paslon");
+  }
+});
+
 Router.post("/tambah", upload.single("gambarPaslon"), (req, res) => {
   const { nameKetua, nameWaketu } = req.body;
-  const obj = {
+  const insertData = {
     ketua: nameKetua,
     wakil: nameWaketu,
     img: {
@@ -48,7 +71,16 @@ Router.post("/tambah", upload.single("gambarPaslon"), (req, res) => {
     },
   };
 
-  console.log(obj);
+  Paslon.findOne({ ketua: nameKetua, wakil: nameWaketu }).then(async (PLon) => {
+    if (!PLon) {
+      await Paslon.create(insertData);
+      req.flash("success", "Paslon baru berhasil ditambahkan, silahkan login");
+      res.redirect("/admin/paslon");
+    } else {
+      req.flash("error", "Paslon sudah terdaftar !");
+      res.redirect("/admin/paslon/tambah");
+    }
+  });
 
   res.redirect("/admin/paslon");
 });
