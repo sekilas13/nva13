@@ -73,7 +73,7 @@ Router.post("/tambah", upload.single("gambarPaslon"), (req, res) => {
   Paslon.findOne({ ketua: nameKetua, wakil: nameWaketu }).then(async (PLon) => {
     if (!PLon) {
       await Paslon.create(insertData);
-      req.flash("success", "Paslon baru berhasil ditambahkan, silahkan login");
+      req.flash("success", "Paslon baru berhasil ditambahkan !");
       res.redirect("/admin/paslon");
     } else {
       req.flash("error", "Paslon sudah terdaftar !");
