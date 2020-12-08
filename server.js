@@ -1,4 +1,3 @@
-const GridFsStorage = require("multer-gridfs-storage");
 const methodOverride = require("method-override");
 const session = require("express-session");
 const compression = require("compression");
@@ -10,8 +9,6 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const noCache = require("nocache");
 const express = require("express");
-const multer = require("multer");
-const crypto = require("crypto");
 const http = require("http");
 const path = require("path");
 const MongoStore = require("connect-mongo")(session);
@@ -38,26 +35,6 @@ mongoose
     console.log(`Error : ${err}`);
     process.exit(22);
   });
-
-const storage = new GridFsStorage({
-  options: { useUnifiedTopology: true },
-  url: process.env.MONGO_URL,
-  file: (req, file) => {
-    return new Promise((resolve, reject) => {
-      crypto.randomBytes(16, (err, buf) => {
-        if (err) {
-          return reject(err);
-        }
-        const filename = buf.toString("hex") + path.extname(file.originalname);
-        const fileInfo = {
-          filename: filename,
-          bucketName: "uploads",
-        };
-        resolve(fileInfo);
-      });
-    });
-  },
-});
 
 app.use(compression());
 
