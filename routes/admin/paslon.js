@@ -80,8 +80,6 @@ Router.post("/tambah", upload.single("gambarPaslon"), (req, res) => {
       res.redirect("/admin/paslon/tambah");
     }
   });
-
-  res.redirect("/admin/paslon");
 });
 
 module.exports = Router;
