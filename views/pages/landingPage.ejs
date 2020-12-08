@@ -11,6 +11,21 @@
           <h1 class="text-center">Pilih Paslon Mu</h1>
         </div>
       </div>
+      <% if(data.length < 1) { %>
+      <div class="row mt-3">
+        <div class="col">
+          <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <h1 class="display-4">Tidak Ada Data PASLON</h1>
+              <p class="lead">
+                Tidak ada data paslon yang ada, mohon hubungi admin untuk
+                menambahkan data paslon.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% } %>
     </div>
 
     <%- include('../partial/BSreq.ejs') %>
