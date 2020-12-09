@@ -67,7 +67,12 @@
                     class="btn btn-success"
                     >Ubah</a
                   >
-                  <button class="btn btn-danger">Hapus</button>
+                  <button
+                    class="btn btn-danger btn-delete"
+                    data-id="<%= paslon._id %>"
+                  >
+                    Hapus
+                  </button>
                 </td>
               </tr>
               <% }) %> <% } %>
@@ -78,5 +83,7 @@
     </div>
 
     <%- include('../../../partial/BSreq.ejs') %>
+    <script src="/swal/dist/sweetalert2.all.min.js"></script>
+    <script src="/js/admin/paslon/read.js"></script>
   </body>
 </html>
