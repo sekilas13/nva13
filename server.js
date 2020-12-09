@@ -83,5 +83,5 @@ server.listen(PORT, () =>
 const Sock = socketIO(server);
 
 Sock.on("connection", (socc) => {
-  socc.on("vote", (data) => console.log("data"));
+  socc.on("vote", (data) => console.log(data));
 });
