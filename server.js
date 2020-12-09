@@ -17,7 +17,7 @@ const MongoStore = require("connect-mongo")(session);
 const app = express();
 require("dotenv").config();
 
-const { main, admin } = require("./routes");
+const { main, admin, vote } = require("./routes");
 const Local = require("./passport/local");
 
 const nm_dir = path.join(__dirname, "node_modules");
@@ -74,6 +74,7 @@ app.use(methodOverride("_method"));
 
 app.get("/", main);
 app.use("/admin", admin);
+app.use("/vote", vote);
 
 const server = http.createServer(app);
 
