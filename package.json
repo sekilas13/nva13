@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon server.js --ignore 'public/'",
     "prod-dev": "NODE_ENV=production nodemon server.js",
-    "start": "NODE_ENV=production node server.js"
+    "start": "NODE_ENV=production node server.js",
+    "rm-uploads": "node remove.js"
   },
   "repository": {
     "type": "git",
@@ -38,7 +39,8 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "serve-favicon": "^2.5.0",
-    "socket.io": "^3.0.3"
+    "socket.io": "^3.0.3",
+    "sweetalert2": "^10.12.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.6"

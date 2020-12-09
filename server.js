@@ -60,6 +60,7 @@ app.use(favicon(path.join(pub_dir, "favicon.ico")));
 app.use("/bs", express.static(path.join(nm_dir, "bootstrap")));
 app.use("/jq", express.static(path.join(nm_dir, "jquery")));
 app.use("/validator", express.static(path.join(nm_dir, "jquery-validation")));
+app.use("/swal", express.static(path.join(nm_dir, "sweetalert2")));
 
 app.use(passport.initialize());
 app.use(passport.session());
