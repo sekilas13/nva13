@@ -47,7 +47,7 @@ $(function () {
       },
     },
     submitHandler: function (form) {
-      // form.submit();
+      form.submit();
     },
     errorPlacement: function (label, element) {
       label.addClass("invalid-feedback");
