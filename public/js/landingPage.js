@@ -1,9 +1,10 @@
 $(function () {
   $(".btn-vote").on("click", function () {
+    const id = $(this).data("id");
     Swal.fire({
-      title: "Error!",
-      text: "Do you want to continue",
-      icon: "error",
+      title: "Data ID!",
+      text: "Do you want to continue " + id,
+      icon: "info",
       confirmButtonText: "Cool",
     });
   });
