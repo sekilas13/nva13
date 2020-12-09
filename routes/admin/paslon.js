@@ -117,4 +117,17 @@ Router.post("/ubah/:_id", (req, res) => {
   }
 });
 
+Router.delete("/hapus/:_id", (req, res) => {
+  const id = req.params._id;
+
+  Paslon.findByIdAndRemove(id, function (err, docs) {
+    if (err) {
+      console.log(err);
+      throw err;
+    } else {
+      res.json({ error: false, refresh: true });
+    }
+  });
+});
+
 module.exports = Router;
