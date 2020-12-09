@@ -15,22 +15,24 @@ $(function () {
     rules: {
       nameKetua: {
         required: true,
-        minLength: 3,
+        minlength: 3,
         regex: /^[a-zA-Z\s\-]+$/,
       },
       nameWaketu: {
         required: true,
-        minLength: 3,
+        minlength: 3,
         regex: /^[a-zA-Z\s\-]+$/,
       },
     },
     messages: {
       nameKetua: {
         required,
+        minlength: "Nama minimal memiliki panjang 3 karakter !",
         regex: "Nama harus berupa huruf kecil atau kapital !",
       },
       nameWaketu: {
         required,
+        minlength: "Nama minimal memiliki panjang 3 karakter !",
         regex: "Nama harus berupa huruf kecil atau kapital !",
       },
     },
