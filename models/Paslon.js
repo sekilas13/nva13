@@ -15,6 +15,11 @@ const PaslonScheme = mongoose.Schema({
     data: Buffer,
     contentType: String,
   },
+  memilih: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
   date: {
     required: false,
     type: Date,
