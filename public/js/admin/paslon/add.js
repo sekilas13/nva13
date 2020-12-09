@@ -4,7 +4,7 @@ const minLength = "Nama minimal harus memiliki panjang 3 kata !";
 $.validator.addMethod(
   "regex",
   function (value, element, regexp) {
-    var re = new RegExp(regexp);
+    const re = new RegExp(regexp);
     return this.optional(element) || re.test(value);
   },
   "Please check your input."
@@ -20,12 +20,12 @@ $(function () {
     rules: {
       nameKetua: {
         required: true,
-        minLength: 3,
+        minlength: 3,
         regex: /^[a-zA-Z\s\-]+$/,
       },
       nameWaketu: {
         required: true,
-        minLength: 3,
+        minlength: 3,
         regex: /^[a-zA-Z\s\-]+$/,
       },
       gambarPaslon: {
@@ -39,6 +39,7 @@ $(function () {
       },
       nameWaketu: {
         required,
+        minlength: "Nama minimal memiliki panjang 3 karakter !",
         regex: "Nama harus berupa huruf kecil atau kapital !",
       },
       gambarPaslon: {
@@ -46,7 +47,7 @@ $(function () {
       },
     },
     submitHandler: function (form) {
-      form.submit();
+      // form.submit();
     },
     errorPlacement: function (label, element) {
       label.addClass("invalid-feedback");
