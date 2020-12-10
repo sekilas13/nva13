@@ -1,11 +1,10 @@
 const socket = io();
 
 $(function () {
-  socket.on("connect", () => {
-    socket.emit("new user", { time: new Date() });
-  });
+  socket.on("connect", () => socket.emit("new user", { time: new Date() }));
 
   $(".btn-vote").on("click", function () {
+    $(this).trigger("blur");
     Swal.fire({
       title: "Apakah anda yakin?",
       text: "Ingin memilih paslon ini !",
