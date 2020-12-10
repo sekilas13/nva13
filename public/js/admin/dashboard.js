@@ -10,6 +10,8 @@ $(function () {
       log.addClass("list-group-flush text-center");
     }
   };
+  const scrollDown = () =>
+    log.height() > 341 && log.scrollTop(log[0].scrollHeight);
 
   socket.on("admin:new user", (data) => {
     removeHolder();
@@ -19,6 +21,7 @@ $(function () {
     log.append(`
       <li class="list-group-item">Pemilih baru | ${time}</li>
     `);
+    scrollDown();
   });
 
   socket.on("admin:upvote", (data) => {
