@@ -9,8 +9,10 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const noCache = require("nocache");
 const express = require("express");
+const morgan = require("morgan");
 const http = require("http");
 const path = require("path");
+const { logger } = require("./config");
 const MongoStore = require("connect-mongo")(session);
 
 const app = express();
@@ -30,12 +32,13 @@ mongoose
     useFindAndModify: false,
     useCreateIndex: true,
   })
-  .then(() => console.log("MongoDB connected"))
+  .then(() => logger.info("[MongoDB] connected"))
   .catch((err) => {
     console.log(`Error : ${err}`);
     process.exit(22);
   });
 
+app.use(morgan("combined", { stream: logger.stream }));
 app.use(compression());
 
 app.use(
@@ -79,7 +82,7 @@ app.use("/vote", vote);
 const server = http.createServer(app);
 
 server.listen(PORT, () =>
-  console.log(
+  logger.info(
     ` [server.js] : Listening on port ${PORT} | http://localhost:${PORT}`
   )
 );
