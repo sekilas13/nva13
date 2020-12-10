@@ -23,7 +23,7 @@ const PaslonScheme = mongoose.Schema({
   color: {
     type: String,
     required: false,
-    default: getRandomColor(),
+    default: () => getRandomColor(),
   },
   date: {
     required: false,

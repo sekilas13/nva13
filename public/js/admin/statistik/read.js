@@ -1,6 +1,8 @@
 let barChart;
 let doughnutChart;
 
+let barDatasets = [];
+
 $(function () {
   const ctxBar = $("#bar");
   const ctxDougnut = $("#doughnut");
@@ -12,6 +14,7 @@ $(function () {
         type: "bar",
         data: {
           labels: data.map(({ ketua, wakil }) => ketua + " - " + wakil),
+          datasets: barDatasets,
         },
       });
 
@@ -19,6 +22,14 @@ $(function () {
         type: "doughnut",
         data: {
           labels: data.map(({ ketua, wakil }) => ketua + " - " + wakil),
+          datasets: [
+            {
+              data: data.map(({ memilih }) => memilih),
+              label: data.map(({ ketua, wakil }) => ketua + " - " + wakil),
+              backgroundColor: data.map(({ color }) => color),
+              id: data.map(({ _id }) => _id),
+            },
+          ],
         },
       });
     });
