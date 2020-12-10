@@ -19,13 +19,24 @@ $(function () {
     const time = JamLengkap(data.time);
 
     log.append(`
-      <li class="list-group-item">Pemilih baru | ${time}</li>
+      <li class="list-group-item">Pemilih 
+        <span class="badge badge-pill badge-primary">baru</span> | ${time}
+      </li>
     `);
     scrollDown();
   });
 
   socket.on("admin:upvote", (data) => {
     removeHolder();
+
+    const time = JamLengkap(data.time);
+
+    log.append(`
+      <li class="list-group-item">Pemilih 
+        <span class="badge badge-pill badge-success">memilih</span> paslon | ${time}
+      </li>
+    `);
+    scrollDown();
   });
 
   socket.on("connect", () => {

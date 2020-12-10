@@ -87,7 +87,7 @@ server.listen(PORT, () =>
 const Sock = socketIO(server);
 
 Sock.on("connection", (socc) => {
-  socc.on("vote", ({ _id }) => socc.broadcast.emit("admin:upvote", { _id }));
+  socc.on("vote", (data) => socc.broadcast.emit("admin:upvote", data));
   socc.on("new user", ({ time }) =>
     socc.broadcast.emit("admin:new user", { time })
   );

@@ -28,7 +28,8 @@ $(function () {
           })
             .then((response) => response.json())
             .then((result) => {
-              if (result.success) socket.emit("vote", { _id });
+              if (result.success)
+                socket.emit("vote", { _id, time: new Date() });
             });
         }
       } else {
