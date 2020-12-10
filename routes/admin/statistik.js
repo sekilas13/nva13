@@ -1,3 +1,4 @@
+const { Paslon } = require("../../models");
 const { fullUrl } = require("../../utils");
 const express = require("express");
 const Router = express.Router();
@@ -9,7 +10,13 @@ Router.get("/", (req, res) =>
   })
 );
 
-Router.get("/info", (req, res) => res.send("Info paslon"));
-Router.get("/chartInfo", (req, res) => res.send("Chart.js Label info"));
+Router.get("/info", (req, res) => {
+  Paslon.find()
+    .lean()
+    .exec()
+    .then((data) =>
+      res.json({ data: data.map(({ __v, img, ...data }) => data) })
+    );
+});
 
 module.exports = Router;
