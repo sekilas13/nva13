@@ -9,7 +9,6 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const noCache = require("nocache");
 const express = require("express");
-const helmet = require("helmet");
 const http = require("http");
 const path = require("path");
 const MongoStore = require("connect-mongo")(session);
@@ -38,7 +37,6 @@ mongoose
   });
 
 app.use(compression());
-app.use(helmet());
 
 app.use(
   session({
