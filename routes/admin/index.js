@@ -15,6 +15,7 @@ Router.get("/", checkAuthenticated, (req, res) =>
   res.render("pages/admin/dashboard", {
     title: "Dashboard | NVA13",
     cannonical: fullUrl(req),
+    user: req.user,
   })
 );
 

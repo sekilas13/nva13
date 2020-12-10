@@ -12,8 +12,34 @@
           <h1 class="text-center">Dashboard Admin</h1>
         </div>
       </div>
+      <div class="row mt-3">
+        <div class="col col-md-6">
+          <div class="card">
+            <div class="card-header">
+              <h2 class="text-center">Informasi Anda</h2>
+            </div>
+            <div class="card-body">
+              <ul>
+                <li>Nama : <%= user.username %></li>
+                <li>UID : <%= user._id %></li>
+                <li>Tanggal ditambahkan : <%= user.date %></li>
+                <li>
+                  Koneksi Socket :
+                  <span
+                    id="socket-status"
+                    class="badge badge-pill badge-secondary"
+                    >N/A</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <%- include('../../partial/BSreq.ejs') %>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/admin/dashboard.js"></script>
   </body>
 </html>
