@@ -4,8 +4,8 @@ $(function () {
   let barChart;
   let doughnutChart;
 
-  let barDatasets = [];
   let doughnutDataset = {};
+  let barDataset = [];
 
   const ctxBar = $("#bar");
   const ctxDougnut = $("#doughnut");
@@ -14,11 +14,19 @@ $(function () {
     .then((response) => response.json())
     .then(({ data }) => {
       if (data.length > 0) {
+        barDataset = data.map(({ memilih }) => memilih);
+
         barChart = new Chart(ctxBar, {
           type: "bar",
           data: {
             labels: data.map(({ ketua, wakil }) => ketua + " - " + wakil),
-            datasets: barDatasets,
+            datasets: [
+              {
+                label: "# Jumlah Pemilih",
+                data: barDataset,
+                backgroundColor: data.map(({ color }) => color),
+              },
+            ],
           },
         });
 
@@ -39,7 +47,11 @@ $(function () {
 
         socket.on("admin:upvote", ({ _id }) => {
           const index = doughnutDataset.id.indexOf(_id);
+
           doughnutDataset.data[index] += 1;
+          barDataset[index] += 1;
+
+          barChart.update();
           doughnutChart.update();
         });
       } else {
