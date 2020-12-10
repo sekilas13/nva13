@@ -14,7 +14,18 @@ $(function () {
     }).then(({ isConfirmed }) => {
       if (isConfirmed) {
         const _id = $(this).data("id");
-        socket.emit("vote", { _id });
+        fetch("/vote/upvote", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ _id }),
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            if (result.success) socket.emit("vote", { _id });
+          });
       }
     });
   });
