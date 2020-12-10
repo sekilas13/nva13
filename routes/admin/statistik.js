@@ -9,4 +9,7 @@ Router.get("/", (req, res) =>
   })
 );
 
+Router.get("/info", (req, res) => res.send("Info paslon"));
+Router.get("/chartInfo", (req, res) => res.send("Chart.js Label info"));
+
 module.exports = Router;

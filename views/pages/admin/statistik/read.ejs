@@ -5,7 +5,25 @@
     `${cannonical}` }) %>
   </head>
   <body>
-    <%- include('../../../partial/Navbar/Statistik.ejs') %> <%-
-    include('../../../partial/BSreq.ejs') %>
+    <%- include('../../../partial/Navbar/Statistik.ejs') %>
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col">
+          <h1 class="text-center">Statisitk Pemilihan</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-md-6">
+          <canvas id="bar"></canvas>
+        </div>
+        <div class="col col-md-6">
+          <canvas id="doughnut"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <%- include('../../../partial/BSreq.ejs') %>
+    <script src="/chart/dist/Chart.min.js"></script>
+    <script src="/js/admin/statistik/read.js"></script>
   </body>
 </html>

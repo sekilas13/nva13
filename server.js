@@ -63,7 +63,7 @@ app.use("/bs", express.static(path.join(nm_dir, "bootstrap")));
 app.use("/jq", express.static(path.join(nm_dir, "jquery")));
 app.use("/validator", express.static(path.join(nm_dir, "jquery-validation")));
 app.use("/swal", express.static(path.join(nm_dir, "sweetalert2")));
-app.use("/chart", express.static(path.join(nm_dir, "chartjs")));
+app.use("/chart", express.static(path.join(nm_dir, "chart.js")));
 
 app.use(passport.initialize());
 app.use(passport.session());
