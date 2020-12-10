@@ -1,5 +1,6 @@
 const { fullUrl } = require("../../utils");
 const { User } = require("../../models");
+const statistik = require("./statistik");
 const passport = require("passport");
 const express = require("express");
 const paslon = require("./paslon");
@@ -67,5 +68,6 @@ Router.delete("/logout", (req, res) => {
 });
 
 Router.use("/paslon", checkAuthenticated, paslon);
+Router.use("/statistik", checkAuthenticated, statistik);
 
 module.exports = Router;
