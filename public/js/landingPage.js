@@ -1,6 +1,10 @@
 const socket = io();
 
 $(function () {
+  socket.on("connect", () => {
+    socket.emit("new user", { time: new Date() });
+  });
+
   $(".btn-vote").on("click", function () {
     Swal.fire({
       title: "Apakah anda yakin?",
@@ -12,20 +16,33 @@ $(function () {
       cancelButtonText: "Batal",
       confirmButtonText: "Ya",
     }).then(({ isConfirmed }) => {
-      if (isConfirmed) {
-        const _id = $(this).data("id");
-        fetch("/vote/upvote", {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ _id }),
-        })
-          .then((response) => response.json())
-          .then((result) => {
-            if (result.success) socket.emit("vote", { _id });
-          });
+      if (socket.connected) {
+        if (isConfirmed) {
+          const _id = $(this).data("id");
+          fetch("/vote/upvote", {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ _id }),
+          })
+            .then((response) => response.json())
+            .then((result) => {
+              if (result.success) socket.emit("vote", { _id });
+            });
+        }
+      } else {
+        Swal.fire({
+          title: "Error",
+          text:
+            "Koneksi soket saat ini sedang tidak terhubung, beritahu admin tentang masalah ini.",
+          icon: "error",
+          allowEscapeKey: false,
+          showConfirmButton: false,
+          allowOutsideClick: false,
+          allowEnterKey: false,
+        });
       }
     });
   });
