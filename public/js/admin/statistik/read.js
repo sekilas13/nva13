@@ -28,6 +28,18 @@ $(function () {
               },
             ],
           },
+          options: {
+            plugins: {
+              zoom: {
+                pan: {
+                  enabled: true,
+                },
+                zoom: {
+                  enabled: true,
+                },
+              },
+            },
+          },
         });
 
         doughnutDataset = {

@@ -62,6 +62,8 @@ app.use("/jq", express.static(path.join(nm_dir, "jquery")));
 app.use("/validator", express.static(path.join(nm_dir, "jquery-validation")));
 app.use("/swal", express.static(path.join(nm_dir, "sweetalert2")));
 app.use("/chart", express.static(path.join(nm_dir, "chart.js")));
+app.use("/hammer", express.static(path.join(nm_dir, "hammerjs")));
+app.use("/chartzoom", express.static(path.join(nm_dir, "chartjs-plugin-zoom")));
 
 app.use(passport.initialize());
 app.use(passport.session());
