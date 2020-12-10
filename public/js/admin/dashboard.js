@@ -7,12 +7,18 @@ $(function () {
   const removeHolder = () => {
     if (holder.length == 1) {
       holder.remove();
-      log.addClass("list-group-flush");
+      log.addClass("list-group-flush text-center");
     }
   };
 
   socket.on("admin:new user", (data) => {
     removeHolder();
+
+    const time = JamLengkap(data.time);
+
+    log.append(`
+      <li class="list-group-item">Pemilih baru | ${time}</li>
+    `);
   });
 
   socket.on("admin:upvote", (data) => {
@@ -37,3 +43,15 @@ $(function () {
     }
   });
 });
+
+function JamLengkap(date) {
+  const time = new Date(date);
+
+  const jam = updateTime(time.getHours());
+  const menit = updateTime(time.getMinutes());
+  const detik = updateTime(time.getSeconds());
+
+  return `${jam}:${menit}:${detik}`;
+}
+
+const updateTime = (t) => (t < 10 ? "0" + t : t);
