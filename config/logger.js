@@ -20,6 +20,10 @@ const options = {
 };
 
 const logger = new winston.createLogger({
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.json()
+  ),
   transports: [
     new winston.transports.File(options.file),
     new winston.transports.Console(options.console),

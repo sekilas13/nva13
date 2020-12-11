@@ -90,8 +90,15 @@ server.listen(PORT, () =>
 const Sock = socketIO(server);
 
 Sock.on("connection", (socc) => {
-  socc.on("vote", (data) => socc.broadcast.emit("admin:upvote", data));
-  socc.on("new user", ({ time }) =>
-    socc.broadcast.emit("admin:new user", { time })
-  );
+  logger.info("[Socket.IO] New Connection ", socc.id);
+
+  socc.on("vote", (data) => {
+    logger.info(`[Socket.IO] Upvote Candidate : ${data._id}`);
+    socc.broadcast.emit("admin:upvote", data);
+  });
+
+  socc.on("new user", ({ time }) => {
+    logger.info("[Socket.IO] New User");
+    socc.broadcast.emit("admin:new user", { time });
+  });
 });
