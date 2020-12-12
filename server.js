@@ -35,7 +35,7 @@ mongoose
   .then(() => logger.info("[MongoDB] connected"));
 
 mongoose.connection.on("error", (err) => {
-  logger.error(`Error : ${err}`);
+  logger.error(`[MongoDB] ${err}`);
   process.exit(22);
 });
 
