@@ -34,16 +34,21 @@ mongoose
   })
   .then(() => logger.info("[MongoDB] connected"))
   .catch((err) => {
-    console.log(`Error : ${err}`);
+    logger.error(`Error : ${err}`);
     process.exit(22);
   });
 
 app.use(morgan("combined", { stream: logger.stream }));
 app.use(compression());
 
+if (process.env.NODE_ENV === "production") {
+  app.disable("x-powered-by");
+}
+
 app.use(
   session({
     secret: process.env.SECRET,
+    name: process.env.SESS_NAME,
     resave: false,
     saveUninitialized: false,
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
