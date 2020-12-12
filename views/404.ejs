@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('partial/head.ejs', { title : `${title}`, cannonical:
+    `${cannonical}` }) %>
+  </head>
+  <body>
+    <div class="container mt-4">
+      <div class="row justify-content-center">
+        <div class="col col-lg-5 col-md-6 col-sm-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="row justify-content-center" style="color: #d8232a">
+                <h1 class="display-3">404</h1>
+              </div>
+              <div class="row justify-content-center">
+                <h2 class="text-center" style="font-family: monospace">
+                  NOT FOUND
+                </h2>
+              </div>
+              <div class="row justify-content-center mt-3">
+                <p class="text-center">
+                  Halaman <code><%= url %></code> tidak ditemukan.
+                  <a href="">Kembali</a> ke halaman sebelumnya.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/js/notFound.js"></script>
+  </body>
+</html>
