@@ -32,11 +32,12 @@ mongoose
     useFindAndModify: false,
     useCreateIndex: true,
   })
-  .then(() => logger.info("[MongoDB] connected"))
-  .catch((err) => {
-    logger.error(`Error : ${err}`);
-    process.exit(22);
-  });
+  .then(() => logger.info("[MongoDB] connected"));
+
+mongoose.connection.on("error", (err) => {
+  logger.error(`Error : ${err}`);
+  process.exit(22);
+});
 
 app.use(morgan("combined", { stream: logger.stream }));
 app.use(compression());
