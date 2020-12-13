@@ -49,5 +49,12 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.6"
-  }
+  },
+  "keywords": [
+    "mongodb",
+    "vote",
+    "jquery",
+    "nodejs",
+    "expressjs"
+  ]
 }
