@@ -50,7 +50,7 @@ Script npm yang ada mempunyai dua opsi, satu untuk development dan satu lagi unt
 
 ```sh
 # untuk development
-npm dev
+npm run dev
 ```
 
 ```sh
@@ -58,7 +58,7 @@ npm dev
 npm start
 ```
 
-Anda bisa membukanya di http://localhost:4000
+Anda bisa membukanya di http://localhost:3000
 
 ## Dibuat dengan
 
