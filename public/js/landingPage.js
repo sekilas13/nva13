@@ -28,8 +28,38 @@ $(function () {
           })
             .then((response) => response.json())
             .then((result) => {
-              if (result.success)
+              if (result.success) {
                 socket.emit("vote", { _id, time: new Date() });
+
+                let timerInterval;
+                Swal.fire({
+                  title: "Terimakasih!",
+                  html:
+                    "Suara anda telah direkam, terimakasih telah memilih. Halaman ini akan ditutup dalam waktu <b></b> milidetik.",
+                  timer: 2000,
+                  timerProgressBar: true,
+                  allowEscapeKey: false,
+                  showConfirmButton: false,
+                  allowOutsideClick: false,
+                  allowEnterKey: false,
+                  didOpen: () => {
+                    Swal.showLoading();
+                    timerInterval = setInterval(() => {
+                      const content = Swal.getContent();
+                      if (content) {
+                        const b = content.querySelector("b");
+                        if (b) {
+                          b.textContent = Swal.getTimerLeft();
+                        }
+                      }
+                    }, 100);
+                  },
+                  willClose: () => {
+                    clearInterval(timerInterval);
+                    document.location.reload();
+                  },
+                });
+              }
             });
         }
       } else {
