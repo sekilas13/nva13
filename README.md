@@ -60,10 +60,32 @@ npm start
 
 Anda bisa membukanya di http://localhost:3000
 
+### Mekanisme Pemilihan
+
+Aplikasi ini harus dilakukan ditempat. Laptop / Komputer pemilihan harus diawasi oleh pantia pemilihan. Langkah-langkah pemilihan sebagai berikut.
+
+> :warning: **Pastikan** .env, MongoDB dan server.js sudah diatur dengan benar.
+
+1. Admin Mendaftarkan Akun
+   <br />
+   Pertama, admin harus mendaftarkan di [/admin/daftar](http://localhost:3000/admin/daftar). Masukkan email, nama, dan password.
+2. Login dan Masukan Data Paslon Satu Persatu
+   <br />
+   Kedua, admin login ke [/admin/daftar](http://localhost:3000/admin/login) dengan akun yang telah di daftarkan. Setelah berhasil login tambahkan daftar paslon, klik Daftar Paslon dan Tambah Paslon Baru. Isikan nama ketua dan wakil serta masukan gambar kedua paslon.
+   <br /><br />
+   <img src="./asset/SS/NAVBAR-paslon.png" />
+   <img src="./asset/SS/BUTTON-ADD.png" style="margin-left: 5px; padding-bottom: 6px" />
+3. Lakukan Pemilihan
+   <br />
+   Komputer / Laptop pemilih mengakses halaman landing page di [/](http://localhost:3000) dan pemilihan berlangsung sesuai dengan agenda pemilihan yang telah ditentukan. Data pemilihan akan disimpan di MongoDB sesuai dengan apa yang dipilih, dan juga dapat diketahui hasilnya secara _real time_ dengan mengakses halaman [/admin/statistik](http://localhost:3000/admin/statistik) dan akan ditampilkan hasil pemilihan real time sementara.
+   <br /><br />
+   <img src="./asset/SS/NAVBAR-statistik.png" />
+
 ## Dibuat dengan
 
 - [Node.js](https://nodejs.org/en/) - Software untuk backend
 - [MongoDB](https://www.mongodb.com/) - Database penyimpanan data
 - [ExpressJS](https://expressjs.com/) - Web framework untuk backend
 - [Bootstrap](https://getbootstrap.com/) - Web framework frontend untuk memperindah tampilan
+- [jQuery](https://jquery.com/) - Library JavaScript untuk menghandle front-end
 - [Socket.io](https://socket.io/) - Library Real Time Websocket
